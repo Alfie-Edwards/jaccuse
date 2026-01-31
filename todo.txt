@@ -34,7 +34,7 @@ SOUNDS
 [ ] Win music
 [ ] Lose music
 [ ] Ambient sounds?
-[ ] Found clue
+[x] Found clue - 07
 [ ] Open book
 [ ] Turn page
 
