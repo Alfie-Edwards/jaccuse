@@ -2,11 +2,12 @@ pico-8 cartridge // http://www.pico-8.com
 version 43
 __lua__
 
-#include utils.lua
+#include controls.lua
 #include mouse.lua
 #include player.lua
 #include scenario.lua
 #include speech.lua
+#include utils.lua
 
 
 room = {
@@ -69,7 +70,7 @@ function _draw()
 
 	camera(0, 0)
 	draw_speech()
-	draw_interaction_prompt()
+	draw_controls()
 	-- draw_mouse()
 end
 
@@ -131,6 +132,15 @@ end
 
 function lnpx(text) -- length of text in pixels
 	return print(text, 0, 999999)
+end
+
+
+function str_rep(str, n)
+	local result = ""
+	for _ = 0, n do
+		result = result..str
+	end
+	return result
 end
 
 

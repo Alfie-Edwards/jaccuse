@@ -235,19 +235,14 @@ end
 function update_interaction()
 	interaction = get_interaction()
 
-	if interaction and btnp(4) then
-		talk_to()
-		interaction = nil
-	end
-end
-
-
-function draw_interaction_prompt()
-	if interaction then
-		color(0)
-		print_centered("❎ talk        🅾️ accuse", 117)
-		color(7)
-		print_centered("❎ talk        🅾️ accuse", 116)
+	if interaction then 
+		if btnp(4) then
+			talk_to()
+			interaction = nil
+		else
+			x_prompt = "talk"
+			o_prompt = "j'accuse!"
+		end
 	end
 end
 

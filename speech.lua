@@ -8,6 +8,7 @@ end
 
 function update_speech()
 	if saying then
+		xo_prompt = "next"
 		if saying_para_done() then
 			if any_input() then
 				saying.para += 1
@@ -61,6 +62,7 @@ function say(paras)
 		para = 1,
 		paras = paras,
 	}
+	xo_prompt = "next"
 end
 
 
