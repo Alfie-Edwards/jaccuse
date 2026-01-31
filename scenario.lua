@@ -1,54 +1,151 @@
+Line = class({}, function(self, text, maybe_clue)  -- (str, str|nil)
+	self.text = text
+	self.maybe_clue = maybe_clue
+end)
+
+Question = class({}, function(self, question, result, asked)  -- (str, Line|Questions, bool=false)
+	if asked == nil then asked = false end
+	self.question = question
+	self.result = result
+	self.asked = asked
+end)
+
+Questions = class({}, function(self, normal_questions, final_question)  -- ([Question], str)
+	self.normal_questions = normal_questions
+	self.final_question = final_question
+end)
+
 function init_scenario()
 	main = {
 		guilty = 1,
 		guests = {
 			{
+				name = "1",
 				x = 10,
 				y = 200,
 				sprite = sprites.guest1,
-				dialogue = {"Hello my name is a", "I like eating toast"},
+				dialogue = {
+					Line("Hello world 1."),
+					Questions({
+						Question("What's your name?", Line("My name is egg",
+						                                   "Name is egg")),
+						Question("What's your favourite food?", Line("My favourite food is paper.",
+						                                             "Favourite food is paper")),
+					}, "Goodbye then."),
+					Line("See you!"),
+				},
 			},
 			{
+				name = "2",
 				x = 10,
 				y = 10,
 				sprite = sprites.guest2,
-				dialogue = {"Hello my name is b", "This week I have been mostly eating taramasalata"},
+				dialogue = {
+					Line("Hello world 2."),
+					Questions({
+						Question("What's your name?", Line("My name is egg",
+						                                   "Name is egg")),
+						Question("What's your favourite food?", Line("My favourite food is paper.",
+						                                             "Favourite food is paper")),
+					}, "Goodbye then."),
+					Line("See you!"),
+				},
 			},
 			{
+				name = "3",
 				x = 50,
 				y = 15,
 				sprite = sprites.guest3,
-				dialogue = {"Hello my name is c"},
+				dialogue = {
+					Line("Hello world 3."),
+					Questions({
+						Question("What's your name?", Line("My name is egg",
+						                                   "Name is egg")),
+						Question("What's your favourite food?", Line("My favourite food is paper.",
+						                                             "Favourite food is paper")),
+					}, "Goodbye then."),
+					Line("See you!"),
+				},
 			},
 			{
+				name = "4",
 				x = 80,
 				y = 12,
 				sprite = sprites.guest4,
-				dialogue = {"Hello my name is d"},
+				dialogue = {
+					Line("Hello world 4."),
+					Questions({
+						Question("What's your name?", Line("My name is egg",
+						                                   "Name is egg")),
+						Question("What's your favourite food?", Line("My favourite food is paper.",
+						                                             "Favourite food is paper")),
+					}, "Goodbye then."),
+					Line("See you!"),
+				},
 			},
 			{
+				name = "5",
 				x = 200,
 				y = 200,
 				sprite = sprites.guest5,
-				dialogue = {"Hello my name is e"},
+				dialogue = {
+					Line("Hello world 5."),
+					Questions({
+						Question("What's your name?", Line("My name is egg",
+						                                   "Name is egg")),
+						Question("What's your favourite food?", Line("My favourite food is paper.",
+						                                             "Favourite food is paper")),
+					}, "Goodbye then."),
+					Line("See you!"),
+				},
 			},
 			{
+				name = "6",
 				x = 100,
 				y = 230,
 				sprite = sprites.guest6,
-				dialogue = {"Hello my name is f"},
+				dialogue = {
+					Line("Hello world 6."),
+					Questions({
+						Question("What's your name?", Line("My name is egg",
+						                                   "Name is egg")),
+						Question("What's your favourite food?", Line("My favourite food is paper.",
+						                                             "Favourite food is paper")),
+					}, "Goodbye then."),
+					Line("See you!"),
+				},
 			},
 			{
+				name = "7",
 				x = 120,
 				y = 230,
 				sprite = sprites.guest7,
-				dialogue = {"Hello my name is g"},
+				dialogue = {
+					Line("Hello world 7."),
+					Questions({
+						Question("What's your name?", Line("My name is egg",
+						                                   "Name is egg")),
+						Question("What's your favourite food?", Line("My favourite food is paper.",
+						                                             "Favourite food is paper")),
+					}, "Goodbye then."),
+					Line("See you!"),
+				},
 			},
 			{
+				name = "8",
 				x = 70,
 				y = 90,
 				sprite = sprites.guest8,
-				dialogue = {"Hello my name is h"},
+				dialogue = {
+					Line("Hello world 8."),
+					Questions({
+						Question("What's your name?", Line("My name is egg",
+						                                   "Name is egg")),
+						Question("What's your favourite food?", Line("My favourite food is paper.",
+						                                             "Favourite food is paper")),
+					}, "Goodbye then."),
+					Line("See you!"),
+				},
 			}
 		}
 	}
@@ -83,13 +180,54 @@ function get_interaction()
 end
 
 
+function print_seen_clues()
+	printh("player's seen clues:")
+	for g,clues in pairs(player.seen_clues) do
+		for _,clue in ipairs(clues) do
+			printh("    "..g..": "..clue)
+		end
+	end
+end
+
+-- if maybe_clue isn't nil, remember it on the player (associated with the given guest)
+function see_clue(guest, maybe_clue)
+	if maybe_clue == nil then return end
+
+	if player.seen_clues[guest.name] == nil then
+		player.seen_clues[guest.name] = {}
+	end
+
+	if index_of(player.seen_clues[guest.name], maybe_clue) == nil then
+		add(player.seen_clues[guest.name], maybe_clue)
+	end
+
+	print_seen_clues()
+end
+
 -- talk to a guest (defaulting to current `interaction`)
 function talk_to(guest)
 	if guest == nil then guest = interaction end
 	assert(guest ~= nil)
 	assert(guest.next_dialogue_idx ~= nil)
 
-	say(guest.dialogue[(guest.next_dialogue_idx % #guest.dialogue) + 1])
+	-- TODO #finish: if you stop talking, should reset to zero
+	local idx = (guest.next_dialogue_idx % #guest.dialogue) + 1
+	local current_stage = guest.dialogue[idx]
+
+	local line_to_say = nil
+	assert(current_stage.class ~= nil)
+	if current_stage.class == Line then
+		line_to_say = current_stage
+	elseif current_stage.class == Questions then
+		-- TODO #finish
+		line_to_say = current_stage.normal_questions[1].result
+	else
+		assert(false == "unexpected class")
+	end
+	assert(line_to_say ~= nil)
+
+	see_clue(guest, line_to_say.maybe_clue)
+	say(line_to_say.text)
 	guest.next_dialogue_idx += 1
 end
 
@@ -97,19 +235,14 @@ end
 function update_interaction()
 	interaction = get_interaction()
 
-	if interaction and btnp(4) then
-		talk_to()
-		interaction = nil
-	end
-end
-
-
-function draw_interaction_prompt()
-	if interaction then
-		color(0)
-		print_centered("❎ talk        🅾️ accuse", 117)
-		color(7)
-		print_centered("❎ talk        🅾️ accuse", 116)
+	if interaction then 
+		if btnp(4) then
+			talk_to()
+			interaction = nil
+		else
+			x_prompt = "talk"
+			o_prompt = "j'accuse!"
+		end
 	end
 end
 

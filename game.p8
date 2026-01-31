@@ -2,6 +2,8 @@ pico-8 cartridge // http://www.pico-8.com
 version 43
 __lua__
 
+#include utils.lua
+#include controls.lua
 #include mouse.lua
 #include player.lua
 #include scenario.lua
@@ -15,6 +17,9 @@ room = {
 
 -- init ------------------------
 function _init()
+	-- Disable repeated keypresses when holding down key.
+	poke(0x5f5c, 255)
+
 	started = false
 
 	sprites = {
@@ -62,11 +67,6 @@ function _update60()
 end
 
 
-function any_input()
-	return btn(4) or btn(5) or mouse.pressed
-end
-
-
 -- draw ------------------------
 
 
@@ -84,7 +84,7 @@ function _draw()
 
 	camera(0, 0)
 	draw_speech()
-	draw_interaction_prompt()
+	draw_controls()
 	-- draw_mouse()
 end
 
@@ -100,7 +100,7 @@ function draw_bg()
 	for i = 0, 31 do
 		draw_sprite(sprites.wall_edge_h, i*8, 0)
 		draw_sprite(sprites.wall_edge_v, -8, i*8)
-		draw_sprite(sprites.wall_edge_v, room.w, i*8, true, false)
+		draw_sprite(sprites.wall_edge_v, room.w, i*8, true)
 	end
 
 	map(0, 0, 0, 0, 128, 128)
@@ -160,6 +160,15 @@ end
 
 function lnpx(text) -- length of text in pixels
 	return print(text, 0, 999999)
+end
+
+
+function str_rep(str, n)
+	local result = ""
+	for _ = 0, n do
+		result = result..str
+	end
+	return result
 end
 
 

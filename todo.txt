@@ -6,7 +6,9 @@ PROGRAMMING
 [ ] Accuse screen correct guess (creature cries and goes home)
 [ ] Lose screen (you got kicked out)
 [ ] Win screen (your post on your cryptid blog got 1000 views)
+[ ] Showing chat heads in dialogue
 [ ] Multiple questions (scroll with up/down?)
+[ ] Clues from some questions
 [x] Turning character sprite
 [ ] Notebook
 
@@ -32,6 +34,9 @@ SOUNDS
 [ ] Win music
 [ ] Lose music
 [ ] Ambient sounds?
+[ ] Found clue
+[ ] Open book
+[ ] Turn page
 
 POLISH
 [ ] Circular shadow under each character
