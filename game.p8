@@ -21,6 +21,12 @@ function _init()
 	poke(0x5f5c, 255)
 
 	scene = "menu"
+	intro_strings = {
+		"I am crocodile",
+		"I will eat you!",
+		"Bwa ha ha ha!",
+	}
+
 	intro_string = nil
 
 	sprites = {
@@ -73,13 +79,7 @@ function _update60()
 end
 
 function intro_scene()
-	strings = {
-		"I am crocodile",
-		"I will eat you!",
-		"Bwa ha ha ha!",
-	}
-
-	for _, string in pairs(strings) do
+	for _, string in pairs(intro_strings) do
 		intro_string = string
 		yield()
 	end
