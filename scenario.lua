@@ -69,7 +69,7 @@ function get_interaction()
 	local closest_dist = 999
 	for _, guest in ipairs(scenario.guests) do
 		-- Feels odd talking to people from behind.
-		if player.y > guest.y then
+		if (player.y - guest.y) > -8 then
 			local dist = funnysqdist(guest.x, guest.y, player.x, player.y)
 			if dist < closest_dist then
 				closest = guest
@@ -77,7 +77,7 @@ function get_interaction()
 			end
 		end
 	end
-	if closest_dist < 0.15 then
+	if closest_dist < 0.06 then
 		return closest
 	end
 end
