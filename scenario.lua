@@ -56,9 +56,55 @@ main = {
 	}
 }
 
+
 function init_scenario()
 	scenario = main
+	interaction = nil
 end
+
+
+function get_interaction()
+	if saying then
+		return nil
+	end
+	local closest
+	local closest_dist = 999
+	for _, guest in ipairs(scenario.guests) do
+		-- Feels odd talking to people from behind.
+		if player.y > guest.y then
+			local dist = funnysqdist(guest.x, guest.y, player.x, player.y)
+			if dist < closest_dist then
+				closest = guest
+				closest_dist = dist
+			end
+		end
+	end
+	if closest_dist < 0.15 then
+		return closest
+	end
+end
+
+
+function update_interaction()
+	interaction = get_interaction()
+	printh(interaction)
+
+	if interaction and btnp(4) then
+		say(interaction.dialogue)
+		interaction = nil
+	end
+end
+
+
+function draw_interaction_prompt()
+	if interaction then
+		color(0)
+		print_centered("❎ talk        🅾️ accuse", 117)
+		color(7)
+		print_centered("❎ talk        🅾️ accuse", 116)
+	end
+end
+
 
 function draw_characters()
 	for _, guest in ipairs(scenario.guests) do

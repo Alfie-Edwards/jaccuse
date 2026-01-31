@@ -29,6 +29,7 @@ end
 function _update60()
 	update_mouse()
 	update_player()
+	update_interaction()
 	update_speech()
 end
 
@@ -49,6 +50,7 @@ function _draw()
 
 	camera(0, 0)
 	draw_speech()
+	draw_interaction_prompt()
 	-- draw_mouse()
 end
 
@@ -61,6 +63,27 @@ end
 
 function strobe(period, offset)
 	return (t() - (offset or 0) + period) % (period * 2) < period
+end
+
+
+function print_centered(text, y, offset)
+    print(text, (128 - lnpx(text)) / 2 + (offset or 0), y)
+end
+
+
+-- util ------------------------
+
+
+function funnysqdist(x1, y1, x2, y2)
+	-- max int is 32767 so have to scale down all the numbers...
+	local dx = (x2 - x1) / 64
+	local dy = (y2 - y1) / 64
+	return dx * dx + dy * dy
+end
+
+
+function lnpx(text) -- length of text in pixels
+	return print(text, 0, 999999)
 end
 
 
