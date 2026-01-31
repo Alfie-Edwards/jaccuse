@@ -8,6 +8,7 @@ __lua__
 #include player.lua
 #include scenario.lua
 #include speech.lua
+#include screens.lua
 
 
 room = {
@@ -19,15 +20,6 @@ room = {
 function _init()
 	-- Disable repeated keypresses when holding down key.
 	poke(0x5f5c, 255)
-
-	scene = "menu"
-	intro_strings = {
-		"I am crocodile",
-		"I will eat you!",
-		"Bwa ha ha ha!",
-	}
-
-	intro_string = nil
 
 	sprites = {
 		player_front = sprite(64, 2, 4, 8, 32),
@@ -48,6 +40,7 @@ function _init()
 		floor = sprite(255, 1, 1, 0, 0),
 	}
 
+	init_screens()
 	init_mouse()
 	init_player()
 	init_scenario()
@@ -59,58 +52,17 @@ end
 
 function _update60()
 	update_mouse()
-
-	if scene == "menu" then
-		if any_input() then
-			scene = "intro"
-			cor = cocreate(intro_scene)
-		end
-	end
-
-	if scene == "intro" then
-		if cor and costatus(cor) != 'dead' and btnp(❎) then
-			coresume(cor)
-		end
-	end
-
+	update_screens()
 	update_player()
 	update_interaction()
 	update_speech()
-end
-
-function intro_scene()
-	for _, string in pairs(intro_strings) do
-		intro_string = string
-		yield()
-	end
-
-	scene = "game"
 end
 
 -- draw ------------------------
 
 
 function _draw()
-	if scene == "menu" then
-		draw_start_screen()
-		return
-	end
-
-	if scene == "intro" then
-		draw_intro_screen()
-		return
-	end
-
-	if not scene == "game" then
-		return
-	end
-
-	if won() then
-		draw_win_screen()
-		return
-	end
-	if lost() then
-		draw_lose_screen()
+	if draw_screens() == 1 then
 		return
 	end
 
@@ -180,61 +132,6 @@ function draw_sprite(sprite, x, y, flip_x, flip_y)
 	if flip_x == nil then flip_x = false end
 	if flip_y == nil then flip_y = false end
 	spr(sprite.id, x - sprite.ox, y - sprite.oy, sprite.w, sprite.h, flip_x, flip_y)
-end
-
-function won()
-	-- TODO: Assign accused variable elsewhere
-	return (
-		scenario != nil and
-		accused != nil and
-		accused == scenario.guilty and
-		scene == "game"
-	)
-end
-
-function lost()
-	-- TODO: Assign accused variable elsewhere
-	return (
-		scenario != nil and
-		accused != nil and
-		accused != scenario.guilty and
-		scene == "game"
-	)
-end
-
-function draw_start_screen()
-	cls(11)
-
-	color(14)
-	print_centered("j'accuse", 60)
-	color(0)
-	print_centered("j'accuse", 59)
-
-	color(14)
-	if strobe(0.66) then
-		print_centered("PRESS ANY BUTTON...", 100)
-	end
-end
-
-function draw_intro_screen()
-	cls(1)
-
-	color(9)
-	print_centered(intro_string, 60)
-end
-
-function draw_win_screen()
-	cls(9)
-
-	color(7)
-	print_centered("you win!!!", 60)
-end
-
-function draw_lose_screen()
-	cls(0)
-
-	color(8)
-	print_centered("you lost!!!", 60)
 end
 
 -- util ------------------------
