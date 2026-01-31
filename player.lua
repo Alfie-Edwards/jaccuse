@@ -16,7 +16,11 @@ function init_player()
 	player = {
 		x = room.w / 2,
 		y = room.h - 1,
+
 		max_speed = 1,
+
+		seen_clues = {},  -- {guest name (str): list of clues (strs)}
+
 		dir = direction.down,
 		last_started_pressing = {
 			up = 0,

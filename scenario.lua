@@ -3,7 +3,7 @@ Line = class({}, function(self, text, maybe_clue)  -- (str, str|nil)
 	self.maybe_clue = maybe_clue
 end)
 
-Question = class({}, function(self, question, result, asked)  -- (str, Line|{Question}, bool=false)
+Question = class({}, function(self, question, result, asked)  -- (str, Line|Questions, bool=false)
 	if asked == nil then asked = false end
 	self.question = question
 	self.result = result
@@ -20,6 +20,7 @@ function init_scenario()
 		guilty = 1,
 		guests = {
 			{
+				name = "1",
 				x = 10,
 				y = 200,
 				sprite = sprites.guest1,
@@ -35,6 +36,7 @@ function init_scenario()
 				},
 			},
 			{
+				name = "2",
 				x = 10,
 				y = 10,
 				sprite = sprites.guest2,
@@ -50,6 +52,7 @@ function init_scenario()
 				},
 			},
 			{
+				name = "3",
 				x = 50,
 				y = 15,
 				sprite = sprites.guest3,
@@ -65,6 +68,7 @@ function init_scenario()
 				},
 			},
 			{
+				name = "4",
 				x = 80,
 				y = 12,
 				sprite = sprites.guest4,
@@ -80,6 +84,7 @@ function init_scenario()
 				},
 			},
 			{
+				name = "5",
 				x = 200,
 				y = 200,
 				sprite = sprites.guest5,
@@ -95,6 +100,7 @@ function init_scenario()
 				},
 			},
 			{
+				name = "6",
 				x = 100,
 				y = 230,
 				sprite = sprites.guest6,
@@ -110,6 +116,7 @@ function init_scenario()
 				},
 			},
 			{
+				name = "7",
 				x = 120,
 				y = 230,
 				sprite = sprites.guest7,
@@ -125,6 +132,7 @@ function init_scenario()
 				},
 			},
 			{
+				name = "8",
 				x = 70,
 				y = 90,
 				sprite = sprites.guest8,
@@ -172,6 +180,30 @@ function get_interaction()
 end
 
 
+function print_seen_clues()
+	printh("player's seen clues:")
+	for g,clues in pairs(player.seen_clues) do
+		for _,clue in ipairs(clues) do
+			printh("    "..g..": "..clue)
+		end
+	end
+end
+
+-- if maybe_clue isn't nil, remember it on the player (associated with the given guest)
+function see_clue(guest, maybe_clue)
+	if maybe_clue == nil then return end
+
+	if player.seen_clues[guest.name] == nil then
+		player.seen_clues[guest.name] = {}
+	end
+
+	if index_of(player.seen_clues[guest.name], maybe_clue) == nil then
+		add(player.seen_clues[guest.name], maybe_clue)
+	end
+
+	print_seen_clues()
+end
+
 -- talk to a guest (defaulting to current `interaction`)
 function talk_to(guest)
 	if guest == nil then guest = interaction end
@@ -194,7 +226,7 @@ function talk_to(guest)
 	end
 	assert(line_to_say ~= nil)
 
-	-- TODO #finish: register clues
+	see_clue(guest, line_to_say.maybe_clue)
 	say(line_to_say.text)
 	guest.next_dialogue_idx += 1
 end

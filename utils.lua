@@ -19,3 +19,12 @@ function class(prototype, constructor)
 	end
 	return setmetatable(prototype, mt)
 end
+
+function index_of(list, value)
+	for i,v in ipairs(list) do
+		if v == value then
+			return i
+		end
+	end
+	return nil
+end
