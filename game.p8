@@ -84,7 +84,7 @@ function draw_bg()
 	for i = 0, 31 do
 		draw_sprite(sprites.wall_edge_h, i*8, 0)
 		draw_sprite(sprites.wall_edge_v, -8, i*8)
-		draw_sprite(sprites.wall_edge_v, room.w, i*8, true, false)
+		draw_sprite(sprites.wall_edge_v, room.w, i*8, true)
 	end
 
 	map(0, 0, 0, 0, 128, 128)
