@@ -17,6 +17,10 @@ room = {
 
 -- init ------------------------
 function _init()
+
+	-- Disable repeated keypresses when holding down key.
+	poke(0x5f5c, 255)
+
 	sprites = {
 		player_front = sprite(64, 2, 4, 8, 32),
 		player_side = sprite(66, 2, 4, 8, 32),
@@ -51,11 +55,6 @@ function _update60()
 	update_player()
 	update_interaction()
 	update_speech()
-end
-
-
-function any_input()
-	return btn(4) or btn(5) or mouse.pressed
 end
 
 

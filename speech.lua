@@ -10,7 +10,7 @@ function update_speech()
 	if saying then
 		xo_prompt = "next"
 		if saying_para_done() then
-			if any_input() then
+			if btnp(4) or btnp(5) or mouse.pressed then
 				saying.para += 1
 				saying.char = 1
 				if saying.para > #saying.paras then
