@@ -105,13 +105,11 @@ function _draw()
 		return
 	end
 
-	-- Assign accused variable elsewhere
-	-- TODO: Make this into a function?
-	if scenario != nil and accused != nil and accused == scenario.guilty and scene == "game" then
+	if won() then
 		draw_win_screen()
 		return
 	end
-	if scenario != nil and accused != nil and accused != scenario.guilty and scene == "game" then
+	if lost() then
 		draw_lose_screen()
 		return
 	end
@@ -182,6 +180,26 @@ function draw_sprite(sprite, x, y, flip_x, flip_y)
 	if flip_x == nil then flip_x = false end
 	if flip_y == nil then flip_y = false end
 	spr(sprite.id, x - sprite.ox, y - sprite.oy, sprite.w, sprite.h, flip_x, flip_y)
+end
+
+function won()
+	-- TODO: Assign accused variable elsewhere
+	return (
+		scenario != nil and
+		accused != nil and
+		accused == scenario.guilty and
+		scene == "game"
+	)
+end
+
+function lost()
+	-- TODO: Assign accused variable elsewhere
+	return (
+		scenario != nil and
+		accused != nil and
+		accused != scenario.guilty and
+		scene == "game"
+	)
 end
 
 function draw_start_screen()
