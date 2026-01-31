@@ -27,7 +27,7 @@ ART
 [ ] Furniture / setpieces (relating to Table of creature attributes)
 
 SOUNDS
-[ ] Talking
+[x] Talking - 06
 [x] Walking - 05
 [-] Epic BGM - play pattern 02 (loops). WIP
 [ ] Dramatic accuse sound
