@@ -1,5 +1,5 @@
 main = {
-	guilty = "a",
+	guilty = 1,
 	characters = {
 		{
 			x = 10,
