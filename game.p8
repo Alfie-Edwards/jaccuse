@@ -105,6 +105,12 @@ function _draw()
 		return
 	end
 
+	-- Assign accused variable elsewhere
+	if scenario != nil and accused == scenario.guilty and scene == "game" then
+		draw_lose_screen()
+		return
+	end
+
 	camera(player.x - 64, player.y - 64)
 
 	draw_bg()
@@ -192,6 +198,13 @@ function draw_intro_screen()
 
 	color(9)
 	print_centered(intro_string, 60)
+end
+
+function draw_lose_screen()
+	cls(0)
+
+	color(8)
+	print_centered("you lost!!!", 60)
 end
 
 -- util ------------------------
