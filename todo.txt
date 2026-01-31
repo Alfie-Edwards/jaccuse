@@ -28,7 +28,7 @@ ART
 
 SOUNDS
 [ ] Talking
-[ ] Walking
+[x] Walking - 05
 [ ] Epic BGM
 [ ] Dramatic accuse sound
 [ ] Win music
