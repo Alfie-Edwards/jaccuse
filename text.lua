@@ -68,6 +68,7 @@ function saying_para_done()
 	return (not saying) or saying.char == #saying.paras[saying.para]
 end
 
+
 function wrap(text)
 	local lines = {}
 	for _, para in ipairs(split(text, "\n")) do
