@@ -19,6 +19,8 @@ function init_player()
 
 		max_speed = 1,
 
+		talking_to = nil,  -- nil|{guest=(table),idx=(int)}
+
 		seen_clues = {},  -- {guest name (str): list of clues (strs)}
 
 		dir = direction.down,
@@ -78,6 +80,13 @@ function update_player()
 			end
 		end
 		player.dir = visual_direction
+	elseif btnp(4) then
+		-- talking: advance dialogue
+		assert(player.talking_to ~= nil)
+		player.talking_to.idx += 1
+		if not say_line(player.talking_to.guest, player.talking_to.idx) then
+			player.talking_to = nil
+		end
 	end
 end
 

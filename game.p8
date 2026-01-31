@@ -108,8 +108,19 @@ function _draw()
 	camera(player.x - 64, player.y - 64)
 
 	draw_bg()
-	draw_guests()
+
+	-- things in the room (painter's algorithm)
+	for _,g in ipairs(scenario.guests) do
+		if g.y <= player.y then
+			draw_guest(g)
+		end
+	end
 	draw_player()
+	for _,g in ipairs(scenario.guests) do
+		if g.y > player.y then
+			draw_guest(g)
+		end
+	end
 
 	camera(0, 0)
 	draw_speech()
