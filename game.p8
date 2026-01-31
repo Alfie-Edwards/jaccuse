@@ -106,7 +106,8 @@ function _draw()
 	end
 
 	-- Assign accused variable elsewhere
-	if scenario != nil and accused == scenario.guilty and scene == "game" then
+	-- TODO: Make this into a function?
+	if scenario != nil and accused != nil and accused != scenario.guilty and scene == "game" then
 		draw_lose_screen()
 		return
 	end
