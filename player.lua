@@ -84,7 +84,7 @@ function update_player()
 		-- talking: advance dialogue
 		assert(player.talking_to ~= nil)
 		player.talking_to.idx += 1
-		if not say_line(player.talking_to.guest, player.talking_to.idx) then
+		if not say_idx(player.talking_to.guest, player.talking_to.idx) then
 			player.talking_to = nil
 		end
 	end
