@@ -28,7 +28,6 @@ function _init()
 	init_player()
 	init_scenario()
 	init_speech()
-	say("hello world")
 end
 
 
