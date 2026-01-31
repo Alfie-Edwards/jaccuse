@@ -1,10 +1,33 @@
-[ ] Start screen
+PROGRAMMING
+
+[ ] Menu screen
+[ ] Intro scene?
 [ ] Accuse screen wrong guess (remove mask, human face underneath, closeup using big head sprites?)
-[ ] Accuse screen correct guess (monster cries and goes home)
+[ ] Accuse screen correct guess (creature cries and goes home)
 [ ] Lose screen (you got kicked out)
 [ ] Win screen (your post on your cryptid blog got 1000 views)
 [ ] Multiple questions (scroll with up/down?)
-[ ] Furniture
-[ ] Character sprite that turns, maybe classic masquarade mask?
-[ ] Big head sprites (show in dialogue) (if we do 4x4 they'll be half the sprite sheet, probably fine)
+[ ] Turning character sprite
+
+SCENARIO DESIGN
+
 [ ] Table of attributes for each creature to help design a scenario
+
+ART
+
+[ ] Choose the 16 colours we want to use
+[ ] Character heads
+[ ] Big head sprites (show in dialogue) (if we do 4x4 they'll be half the sprite sheet, that should be okay)
+[ ] Character sprite that turns, maybe classic masquarade mask?
+[ ] Walls and wall corners
+[ ] Floor
+[ ] Furniture / setpieces (relating to Table of creature attributes)
+
+SOUNDS
+[ ] Talking
+[ ] Walking
+[ ] Epic BGM
+[ ] Dramatic accuse sound
+[ ] Win music
+[ ] Lose music
+[ ] Ambient sounds?
