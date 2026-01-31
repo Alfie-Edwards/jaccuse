@@ -36,7 +36,7 @@ SOUNDS
 [ ] Ambient sounds?
 [x] Found clue - 07
 [x] Open book - 12
-[ ] Turn page - 13
+[x] Turn page - 13
 
 POLISH
 [ ] Circular shadow under each character
