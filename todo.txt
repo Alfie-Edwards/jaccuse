@@ -29,7 +29,7 @@ ART
 SOUNDS
 [x] Talking - 06
 [x] Walking - 05
-[-] Epic BGM - play pattern 00 (loops). WIP
+[x] Epic BGM - play from pattern 01
 [ ] Dramatic accuse sound
 [ ] Win music
 [ ] Lose music
