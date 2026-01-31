@@ -8,6 +8,11 @@ __lua__
 #include speech.lua
 
 
+room = {
+	w = 256,
+	h = 256,
+}
+
 -- init ------------------------
 function _init()
 	sprites = {
@@ -23,7 +28,7 @@ function _init()
 		guest6 = sprite(10, 2, 2, 8, 16),
 		guest7 = sprite(12, 2, 2, 4, 16),
 		guest8 = sprite(14, 2, 2, 8, 16),
-		wall_corner = sprite(222, 1, 2, 8, 16),
+		wall_corner = sprite(222, 1, 2, 0, 16),
 		wall_edge_h = sprite(223, 1, 2, 0, 16),
 		wall_edge_v = sprite(254, 1, 1, 0, 0),
 		floor = sprite(255, 1, 1, 0, 0),
@@ -72,14 +77,14 @@ function draw_bg()
 	cls(0)
 
 	-- Wall corners
-	draw_sprite(sprites.wall_corner, 0, 0)
-	draw_sprite(sprites.wall_corner, 248, 0, true)
+	draw_sprite(sprites.wall_corner, -8, 0)
+	draw_sprite(sprites.wall_corner, room.w, 0, true)
 
 	-- Wall edges
 	for i = 0, 31 do
-		draw_sprite(sprites.wall_edge_h, i * 8, 0)
-		draw_sprite(sprites.wall_edge_v, -8, i * 8)
-		draw_sprite(sprites.wall_edge_v, 256, i * 8, true, false)
+		draw_sprite(sprites.wall_edge_h, i*8, 0)
+		draw_sprite(sprites.wall_edge_v, -8, i*8)
+		draw_sprite(sprites.wall_edge_v, room.w, i*8, true, false)
 	end
 
 	map(0, 0, 0, 0, 128, 128)

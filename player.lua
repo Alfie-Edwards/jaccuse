@@ -14,8 +14,8 @@ input_map = {
 
 function init_player()
 	player = {
-		x = 128,
-		y = 255,
+		x = room.w / 2,
+		y = room.h - 1,
 		max_speed = 1,
 		dir = direction.down,
 		last_started_pressing = {
@@ -46,8 +46,8 @@ function move(dir)
 		player.last_started_pressing[dir] = time()
 	end
 
-	player.x = min(max(player.x + offset.x, 0), 255)
-	player.y = min(max(player.y + offset.y, 0), 255)
+	player.x = min(max(player.x + offset.x, 0), room.w - 1)
+	player.y = min(max(player.y + offset.y, 0), room.h - 1)
 end
 
 function stop_moving(dir)
