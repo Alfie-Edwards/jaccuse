@@ -7,7 +7,8 @@ PROGRAMMING
 [ ] Lose screen (you got kicked out)
 [ ] Win screen (your post on your cryptid blog got 1000 views)
 [ ] Multiple questions (scroll with up/down?)
-[ ] Turning character sprite
+[x] Turning character sprite
+[ ] Notebook
 
 SCENARIO DESIGN
 
