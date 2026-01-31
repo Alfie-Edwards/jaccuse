@@ -10,16 +10,25 @@ __lua__
 
 -- init ------------------------
 
-
 function _init()
+	sprites = {
+		player = sprite(64, 2, 4, 8, 32),
+		guest_body = sprite(32, 2, 2, 8, 16),
+		guest1 = sprite(0, 2, 2, 4, 16),
+		guest2 = sprite(2, 2, 2, 8, 16),
+		guest3 = sprite(4, 2, 2, 4, 16),
+		guest4 = sprite(6, 2, 2, 8, 16),
+		guest5 = sprite(8, 2, 2, 4, 16),
+		guest6 = sprite(10, 2, 2, 8, 16),
+		guest7 = sprite(12, 2, 2, 4, 16),
+		guest8 = sprite(14, 2, 2, 8, 16),
+	}
+
 	init_mouse()
 	init_player()
 	init_scenario()
 	init_speech()
 	say("hello world")
-	sprites = {
-		guest_body = 32
-	}
 end
 
 
@@ -45,7 +54,7 @@ end
 function _draw()
 	camera(player.x - 64, player.y - 64)
 	draw_bg()
-	draw_characters()
+	draw_guests()
 	draw_player()
 
 	camera(0, 0)
@@ -70,6 +79,21 @@ function print_centered(text, y, offset)
     print(text, (128 - lnpx(text)) / 2 + (offset or 0), y)
 end
 
+
+function sprite(id, w, h, ox, oy)
+	return {
+		id = id,
+		w = w,
+		h = h,
+		ox = ox,
+		oy = oy,
+	}
+end
+
+
+function draw_sprite(sprite, x, y)
+	spr(sprite.id, x - sprite.ox, y - sprite.oy, sprite.w, sprite.h)
+end
 
 -- util ------------------------
 

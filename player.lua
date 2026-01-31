@@ -23,5 +23,5 @@ function update_player()
 end
 
 function draw_player()
-	spr(64, player.x - 8, player.y - 32, 2, 4)
+	draw_sprite(sprites.player, player.x, player.y)
 end
