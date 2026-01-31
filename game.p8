@@ -20,7 +20,8 @@ function _init()
 	-- Disable repeated keypresses when holding down key.
 	poke(0x5f5c, 255)
 
-	started = false
+	scene = "menu"
+	intro_string = nil
 
 	sprites = {
 		player_front = sprite(64, 2, 4, 8, 32),
@@ -50,15 +51,20 @@ end
 
 -- update ----------------------
 
-
 function _update60()
 	update_mouse()
 
-	if not started then
+	if scene == "menu" then
 		if any_input() then
-			started = true
+			scene = "intro"
+			cor = cocreate(intro_scene)
 		end
-		return
+	end
+
+	if scene == "intro" then
+		if cor and costatus(cor) != 'dead' and btnp(❎) then
+			coresume(cor)
+		end
 	end
 
 	update_player()
@@ -66,13 +72,36 @@ function _update60()
 	update_speech()
 end
 
+function intro_scene()
+	strings = {
+		"I am crocodile",
+		"I will eat you!",
+		"Bwa ha ha ha!",
+	}
+
+	for _, string in pairs(strings) do
+		intro_string = string
+		yield()
+	end
+
+	scene = "game"
+end
 
 -- draw ------------------------
 
 
 function _draw()
-	if not started then
+	if scene == "menu" then
 		draw_start_screen()
+		return
+	end
+
+	if scene == "intro" then
+		draw_intro_screen()
+		return
+	end
+
+	if not scene == "game" then
 		return
 	end
 
@@ -147,6 +176,13 @@ function draw_start_screen()
 	end
 end
 
+function draw_intro_screen()
+	cls(1)
+
+	color(9)
+	print_centered(intro_string, 60)
+end
+
 -- util ------------------------
 
 
@@ -174,7 +210,6 @@ end
 function any_input()
     return btn(4) or btn(5) or mouse.pressed
 end
-
 
 __gfx__
 00000000000000000000110000110000000000000000000000001100001100000000000000000000000011000011000000000000000000000000110000110000
