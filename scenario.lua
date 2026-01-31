@@ -260,9 +260,7 @@ function update_interaction()
 end
 
 
-function draw_guests()
-	for _, guest in ipairs(scenario.guests) do
-		draw_sprite(sprites.guest_body, guest.x, guest.y)
-		draw_sprite(guest.sprite, guest.x, guest.y - sprites.guest_body.h * 8)
-	end
+function draw_guest(guest)
+	draw_sprite(sprites.guest_body, guest.x, guest.y)
+	draw_sprite(guest.sprite, guest.x, guest.y - sprites.guest_body.h * 8)
 end
