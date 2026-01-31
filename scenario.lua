@@ -28,7 +28,7 @@ function init_scenario()
 					Line("Hello world 1."),
 					Questions({
 						Question("What's your name?", Line("My name is egg",
-						                                   "Name is egg")),
+						                                   "Name is egg Lorem ipsum dolor sit amet, consectetur adipiscing elit")),
 						Question("What's your favourite food?", Line("My favourite food is paper.",
 						                                             "Favourite food is paper")),
 					}, "Goodbye then."),
@@ -44,7 +44,7 @@ function init_scenario()
 					Line("Hello world 2."),
 					Questions({
 						Question("What's your name?", Line("My name is egg",
-						                                   "Name is egg")),
+						                                   "Name is egg the quick brown fox jumps over the lazy dog")),
 						Question("What's your favourite food?", Line("My favourite food is paper.",
 						                                             "Favourite food is paper")),
 					}, "Goodbye then."),
@@ -156,7 +156,7 @@ end
 
 
 function get_interaction()
-	if saying then
+	if saying or clues_open then
 		return nil
 	end
 	local closest
@@ -177,7 +177,6 @@ function get_interaction()
 end
 
 function print_seen_clues()
-	printh("player's seen clues:")
 	for g,clues in pairs(player.seen_clues) do
 		for _,clue in ipairs(clues) do
 			printh("    "..g..": "..clue)
@@ -195,9 +194,8 @@ function see_clue(guest, maybe_clue)
 
 	if index_of(player.seen_clues[guest.name], maybe_clue) == nil then
 		add(player.seen_clues[guest.name], maybe_clue)
+		add_clue(maybe_clue)
 	end
-
-	print_seen_clues()
 end
 
 -- start talking to a `guest` (defaulting to current `interaction`)
@@ -253,8 +251,7 @@ function update_interaction()
 			start_talking_to()
 			interaction = nil
 		else
-			x_prompt = "talk"
-			o_prompt = "j'accuse!"
+			prompt = { "❎ talk",  "🅾️ j'accuse!" }
 		end
 	end
 end

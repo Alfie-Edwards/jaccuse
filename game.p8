@@ -3,6 +3,7 @@ version 43
 __lua__
 
 #include utils.lua
+#include clues.lua
 #include controls.lua
 #include mouse.lua
 #include player.lua
@@ -48,10 +49,12 @@ function _init()
 		floor = sprite(255, 1, 1, 0, 0),
 	}
 
+	init_clues()
 	init_mouse()
 	init_player()
 	init_scenario()
 	init_speech()
+	reset_palette()
 end
 
 
@@ -74,6 +77,7 @@ function _update60()
 	end
 
 	update_player()
+	update_clues()
 	update_interaction()
 	update_speech()
 end
@@ -114,6 +118,7 @@ function _draw()
 		return
 	end
 
+	-- MAP
 	camera(player.x - 64, player.y - 64)
 
 	draw_bg()
@@ -131,8 +136,10 @@ function _draw()
 		end
 	end
 
+	-- UI
 	camera(0, 0)
 	draw_speech()
+	draw_clues()
 	draw_controls()
 	-- draw_mouse()
 end
@@ -175,6 +182,7 @@ function sprite(id, w, h, ox, oy)
 		oy = oy,
 	}
 end
+
 
 function draw_sprite(sprite, x, y, flip_x, flip_y)
 	if flip_x == nil then flip_x = false end
@@ -237,33 +245,6 @@ function draw_lose_screen()
 	print_centered("you lost!!!", 60)
 end
 
--- util ------------------------
-
-
-function funnysqdist(x1, y1, x2, y2)
-	-- max int is 32767 so have to scale down all the numbers...
-	local dx = (x2 - x1) / 64
-	local dy = (y2 - y1) / 64
-	return dx * dx + dy * dy
-end
-
-
-function lnpx(text) -- length of text in pixels
-	return print(text, 0, 999999)
-end
-
-
-function str_rep(str, n)
-	local result = ""
-	for _ = 0, n do
-		result = result..str
-	end
-	return result
-end
-
-function any_input()
-    return btn(4) or btn(5) or mouse.pressed
-end
 
 __gfx__
 00000000000000000000110000110000000000000000000000001100001100000000000000000000000011000011000000000000000000000000110000110000

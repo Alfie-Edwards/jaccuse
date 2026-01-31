@@ -64,7 +64,7 @@ function stop_moving(dir)
 end
 
 function update_player()
-	if not saying then
+	if not saying and not clues_open then
 		for b,d in pairs(input_map) do
 			if btn(b) then
 				move(d)
@@ -80,7 +80,7 @@ function update_player()
 			end
 		end
 		player.dir = visual_direction
-	elseif btnp(4) then
+	elseif saying and btnp(4) then
 		-- talking: advance dialogue
 		assert(player.talking_to ~= nil)
 		player.talking_to.idx += 1
