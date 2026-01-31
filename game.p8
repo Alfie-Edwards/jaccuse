@@ -15,6 +15,8 @@ room = {
 
 -- init ------------------------
 function _init()
+	started = false
+
 	sprites = {
 		player_front = sprite(64, 2, 4, 8, 32),
 		player_side = sprite(66, 2, 4, 8, 32),
@@ -46,6 +48,14 @@ end
 
 function _update60()
 	update_mouse()
+
+	if not started then
+		if any_input() then
+			started = true
+		end
+		return
+	end
+
 	update_player()
 	update_interaction()
 	update_speech()
@@ -61,7 +71,13 @@ end
 
 
 function _draw()
+	if not started then
+		draw_start_screen()
+		return
+	end
+
 	camera(player.x - 64, player.y - 64)
+
 	draw_bg()
 	draw_guests()
 	draw_player()
@@ -115,6 +131,20 @@ function draw_sprite(sprite, x, y, flip_x, flip_y)
 	if flip_x == nil then flip_x = false end
 	if flip_y == nil then flip_y = false end
 	spr(sprite.id, x - sprite.ox, y - sprite.oy, sprite.w, sprite.h, flip_x, flip_y)
+end
+
+function draw_start_screen()
+	cls(11)
+
+	color(14)
+	print_centered("j'accuse", 60)
+	color(0)
+	print_centered("j'accuse", 59)
+
+	color(14)
+	if strobe(0.66) then
+		print_centered("PRESS ANY BUTTON...", 100)
+	end
 end
 
 -- util ------------------------
