@@ -3,6 +3,7 @@ version 43
 __lua__
 
 #include utils.lua
+#include clues.lua
 #include controls.lua
 #include mouse.lua
 #include player.lua
@@ -41,10 +42,12 @@ function _init()
 	}
 
 	init_screens()
+	init_clues()
 	init_mouse()
 	init_player()
 	init_scenario()
 	init_speech()
+	reset_palette()
 end
 
 
@@ -54,6 +57,7 @@ function _update60()
 	update_mouse()
 	update_screens()
 	update_player()
+	update_clues()
 	update_interaction()
 	update_speech()
 end
@@ -66,6 +70,7 @@ function _draw()
 		return
 	end
 
+	-- MAP
 	camera(player.x - 64, player.y - 64)
 
 	draw_bg()
@@ -83,8 +88,10 @@ function _draw()
 		end
 	end
 
+	-- UI
 	camera(0, 0)
 	draw_speech()
+	draw_clues()
 	draw_controls()
 	-- draw_mouse()
 end
@@ -127,6 +134,7 @@ function sprite(id, w, h, ox, oy)
 		oy = oy,
 	}
 end
+
 
 function draw_sprite(sprite, x, y, flip_x, flip_y)
 	if flip_x == nil then flip_x = false end

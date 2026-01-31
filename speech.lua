@@ -1,14 +1,12 @@
 function init_speech()
 	t_para_completed = nil
 	saying = nil
-	max_line_len = 28
-	max_lines = 4
 end
 
 
 function update_speech()
 	if saying then
-		xo_prompt = "next"
+		prompt = "❎/🅾️ next"
 		if saying_para_done() then
 			if btnp(4) or btnp(5) or mouse.pressed then
 				saying.para += 1
@@ -54,7 +52,7 @@ function say(paras)
 	end
 
 	for i,v in ipairs(paras) do
-		paras[i] = wrap(v)
+		paras[i] = wrap(v, 28, 4)
 	end
 
 	saying = {
@@ -62,44 +60,10 @@ function say(paras)
 		para = 1,
 		paras = paras,
 	}
-	xo_prompt = "next"
+	prompt = "❎/🅾️ next"
 end
 
 
 function saying_para_done()
 	return (not saying) or saying.char == #saying.paras[saying.para]
-end
-
-
-function wrap(text)
-	local lines = {}
-	for _, para in ipairs(split(text, "\n")) do
-		add(lines, "")
-		for _, word in ipairs(split(para, " ", false)) do
-			if (#lines[#lines] + #word + 1) > max_line_len then
-				if #word > max_line_len then
-					local i = max_line_len - #lines[#lines]
-					lines[#lines] = lines[#lines]..sub(word, 1, i).." "
-					i += 1
-					while i <= #word do
-						add(lines, sub(word, i, i + max_line_len - 1))
-						i += max_line_len
-					end
-				else
-					add(lines, word.." ")
-				end
-			else
-				lines[#lines] = lines[#lines]..word.." "
-			end
-		end
-	end
-	local result = ""
-	for i, line in ipairs(lines) do
-		if i > 1 then
-			result = result.."\n"
-		end
-		result = result..line
-	end
-	assert(#lines <= max_lines)
-	return result
 end
