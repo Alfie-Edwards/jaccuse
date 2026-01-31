@@ -107,6 +107,10 @@ function _draw()
 
 	-- Assign accused variable elsewhere
 	-- TODO: Make this into a function?
+	if scenario != nil and accused != nil and accused == scenario.guilty and scene == "game" then
+		draw_win_screen()
+		return
+	end
 	if scenario != nil and accused != nil and accused != scenario.guilty and scene == "game" then
 		draw_lose_screen()
 		return
@@ -199,6 +203,13 @@ function draw_intro_screen()
 
 	color(9)
 	print_centered(intro_string, 60)
+end
+
+function draw_win_screen()
+	cls(9)
+
+	color(7)
+	print_centered("you win!!!", 60)
 end
 
 function draw_lose_screen()
