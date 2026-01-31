@@ -10,16 +10,16 @@ function update_player()
 		player.x = max(player.x - 1, 0)
 	end
 	if btn(1) then
-		player.x = min(player.x + 1, 240)
+		player.x = min(player.x + 1, 256)
 	end
 	if btn(2) then
 		player.y = max(player.y - 1, 0)
 	end
 	if btn(3) then
-		player.y = min(player.y + 1, 224)
+		player.y = min(player.y + 1, 256)
 	end
 end
 
 function draw_player()
-	spr(64, player.x, player.y, 2, 4)
+	spr(64, player.x - 8, player.y - 32, 2, 4)
 end
