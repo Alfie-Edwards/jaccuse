@@ -152,9 +152,6 @@ function init_scenario()
 
 	scenario = main
 	interaction = nil
-	for _,g in ipairs(main.guests) do
-		g.next_dialogue_idx = 0
-	end
 end
 
 
@@ -178,7 +175,6 @@ function get_interaction()
 		return closest
 	end
 end
-
 
 function print_seen_clues()
 	printh("player's seen clues:")
@@ -204,14 +200,19 @@ function see_clue(guest, maybe_clue)
 	print_seen_clues()
 end
 
--- talk to a guest (defaulting to current `interaction`)
-function talk_to(guest)
+-- start talking to a `guest` (defaulting to current `interaction`)
+function start_talking_to(guest)
 	if guest == nil then guest = interaction end
 	assert(guest ~= nil)
-	assert(guest.next_dialogue_idx ~= nil)
 
-	-- TODO #finish: if you stop talking, should reset to zero
-	local idx = (guest.next_dialogue_idx % #guest.dialogue) + 1
+	player.talking_to = {guest=guest, idx=1}
+
+	say_line(player.talking_to.guest, player.talking_to.idx)
+end
+
+-- get `Line` corresponding to given guest & dialogue index (or `nil` if idx too large)
+function get_line(guest, idx)
+	if idx > #guest.dialogue then return nil end
 	local current_stage = guest.dialogue[idx]
 
 	local line_to_say = nil
@@ -226,18 +227,30 @@ function talk_to(guest)
 	end
 	assert(line_to_say ~= nil)
 
-	see_clue(guest, line_to_say.maybe_clue)
-	say(line_to_say.text)
-	guest.next_dialogue_idx += 1
+	return line_to_say
 end
 
+-- say a given line, or the line corresponding to the given index, from a `guest`.
+-- return `true` if there's a new line to say, or `false` if index too big (ie. end)
+function say_line(guest, line_or_idx)
+	local line = line_or_idx
+	if type(line) == "number" then
+		line = get_line(guest, line)
+		if line == nil then
+			return false
+		end
+	end
+	see_clue(guest, line.maybe_clue)
+	say(line.text)
+	return true
+end
 
 function update_interaction()
 	interaction = get_interaction()
 
-	if interaction then 
+	if interaction then
 		if btnp(4) then
-			talk_to()
+			start_talking_to()
 			interaction = nil
 		else
 			x_prompt = "talk"
