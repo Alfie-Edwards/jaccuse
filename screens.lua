@@ -55,8 +55,12 @@ function draw_screens()
 		draw_win_screen()
 		return 1
 	end
-	if lost() then
-		draw_lose_screen()
+	if guessed_wrong then
+		draw_wrong_screen()
+		return 1
+	end
+	if out_of_questions then
+		draw_oot_screen()
 		return 1
 	end
 end
@@ -114,7 +118,19 @@ function draw_win_screen()
 	print_centered("you found the monster!!!", 60)
 end
 
-function draw_lose_screen()
+function draw_wrong_screen()
+	cls(0)
+
+	color(8)
+	print_centered("you guessed wrong!", 50)
+
+	color(7)
+	print_centered("you got kicked out", 70)
+	print_centered("for being rude...", 78)
+	color(12)
+	print_centered("then the moster ate the guests!", 86)
+end
+function draw_oot_screen()
 	cls(0)
 
 	color(8)
