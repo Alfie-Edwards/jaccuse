@@ -196,6 +196,8 @@ function see_clue(guest, maybe_clue)
 	if index_of(player.seen_clues[guest.name], maybe_clue) == nil then
 		add(player.seen_clues[guest.name], maybe_clue)
 		add_clue(guest, maybe_clue)
+		choose_question()
+		print_seen_clues()
 	end
 end
 
@@ -220,7 +222,6 @@ function get_to_say(guest, idx)
 		local opts = {}
 		for _,qn in ipairs(current_stage.normal_questions) do
 			add(opts, Option(qn.question, function()
-				choose_question()
 				see_clue(guest, qn.result.maybe_clue)
 				say(qn.result.text)
 			end))

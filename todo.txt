@@ -32,8 +32,8 @@ SOUNDS
 [x] Walking - 05
 [x] Epic BGM - music pattern 01
 [x] Dramatic accuse sound - music pattern 16
-[ ] Win music
-[ ] Lose music
+[x] Win music - music pattern 24
+[x] Lose music - music pattern 32
 [ ] Ambient sounds?
 [x] Found clue - 07
 [x] Open book - 12
