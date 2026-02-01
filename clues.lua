@@ -1,38 +1,49 @@
 function init_clues()
 	clues_open = false
 	clue_scroll = 0
-	all_clues_str = ""
+	clues = {}
 	num_lines_on_screen = 16
 end
 
 
-function add_clue(clue_str)
-	if all_clues_str == "" then
-		all_clues_str = wrap(clue_str, 26)
+function add_clue(guest, clue_str)
+	if clues[guest] == nil then
+		clues[guest] = wrap(clue_str, 26)
 	else
 		clue_str = wrap(clue_str, 26)
-		all_clues_str = all_clues_str.."\n\n"..clue_str
+		clues[guest] = clues[guest].."\n\n"..clue_str
 	end
-
 end
 
+
+function all_clues_str()
+	local result = "         - clues -"
+	local sprite_offsets = {}
+	local line = 0
+	for guest, clue_str in pairs(clues) do
+		result = result.."\n\n\n\n\n"..clue_str
+		sprite_offsets[line + 4] = guest.sprite
+		line += (#split(clue_str, "\n") + 4)
+	end
+	return result, sprite_offsets
+end
 
 function update_clues()
 	if clues_open then
 		if btnp(2) then
 			clue_scroll = max(0, clue_scroll - 1)
 		elseif btnp(3) then
-			local num_clue_lines = #(split(all_clues_str, "\n")) 
+			local num_clue_lines = #(split(all_clues_str(), "\n")) 
 			clue_scroll = min(max(0, num_clue_lines - num_lines_on_screen), clue_scroll + 1)
 		end
 		if btnp(5) then
 			clues_open = false
-		elseif #(split(all_clues_str, "\n")) > num_lines_on_screen then
+		elseif #(split(all_clues_str(), "\n")) > num_lines_on_screen then
 			prompt = { "⬆️/⬇️ scroll", "🅾️ exit" }
 		else
 			prompt = "🅾️ exit"
 		end
-	elseif not interaction and not saying and all_clues_str ~= "" then
+	elseif not interaction and not saying and next(clues) ~= nil then
 		if btnp(4) then
 			clues_open = true
 		else
@@ -44,7 +55,8 @@ end
 
 function draw_clues()
 	if clues_open then
-		local clue_lines = split(all_clues_str, "\n")
+		local all_clues, sprite_index = all_clues_str()
+		local clue_lines = split(all_clues, "\n")
 		local bottom_line = min(clue_scroll + num_lines_on_screen, #clue_lines - 1)
 		local clipped_clue_str = ""
 		for i = clue_scroll, bottom_line do
@@ -88,6 +100,12 @@ function draw_clues()
 
 		color(0)
 		print(clipped_clue_str, 10, 12)
+
+		for offset, sprite in pairs(sprite_index) do
+			if offset >= (clue_scroll + 3) and offset <= bottom_line then
+				draw_sprite(sprite, 16, 20 + 6 * (offset - clue_scroll))
+			end
+		end
 	end
 end
 

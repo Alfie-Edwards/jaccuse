@@ -194,7 +194,7 @@ function see_clue(guest, maybe_clue)
 
 	if index_of(player.seen_clues[guest.name], maybe_clue) == nil then
 		add(player.seen_clues[guest.name], maybe_clue)
-		add_clue(maybe_clue)
+		add_clue(guest, maybe_clue)
 	end
 end
 
