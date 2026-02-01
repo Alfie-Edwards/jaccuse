@@ -28,7 +28,7 @@ end
 function draw_speech()
 	camera(0, 0)
 	if saying then
-		color(0)
+		color(7)
 		rectfill(7, 93, 120, 123)
 		rectfill(4, 96, 123, 120)
 		circfill(7, 96, 3)
@@ -40,7 +40,7 @@ function draw_speech()
 		print(sub(saying.paras[saying.para], 1, saying.char), 8, 97, 2)
 
 		if saying_para_done() and strobe(0.66, t_para_completed) then
-			print("♥", 109, 121, 5)
+			print("♥", 109, 121, 9)
 		end
 	end
 end

@@ -50,27 +50,42 @@ function draw_clues()
 		for i = clue_scroll, bottom_line do
 			clipped_clue_str = clipped_clue_str.."\n"..clue_lines[i+1]
 		end
+
 		color(7)
+		rectfill(3, 14, 124, 122)
 
 		-- Draw dashed top of paper if can be scrolled up
 		if clue_scroll > 0 then
 			poke(0x550b, 0x3f)
 			fillp(0xbC93.8)
+			rectfill(3, 12, 124, 13)
+			fillp()
+			poke(0x550b, 0x00)
+			if strobe(0.66) then
+				color(9)
+				print("★", 62, 10)
+				color(7)
+			end
+		else
+			rectfill(3, 12, 124, 13)
 		end
-		rectfill(3, 12, 124, 13)
-		fillp()
-		poke(0x550b, 0x00)
 
 		-- Draw dashed bottom of paper if can be scrolled up
 		if clue_scroll < max(0, #clue_lines - num_lines_on_screen) then
 			poke(0x550b, 0x3f)
 			fillp(0xbC93.8)
+			rectfill(3, 123, 124, 124)
+			fillp()
+			poke(0x550b, 0x00)
+			if strobe(0.66) then
+				color(9)
+				print("♥", 62, 121)
+				color(7)
+			end
+		else
+			rectfill(3, 123, 124, 124)
 		end
-		rectfill(3, 123, 124, 124)
-		fillp()
-		poke(0x550b, 0x00)
 
-		rectfill(3, 14, 124, 122)
 		color(0)
 		print(clipped_clue_str, 10, 12)
 	end
