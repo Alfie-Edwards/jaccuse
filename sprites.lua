@@ -148,7 +148,9 @@ end
 
 
 function draw_sprite(sprite, x, y, flip_x, flip_y)
-	if sprite.kind == "basic" then
+	if type(sprite) == "function" then
+		sprite(x, y, flip_x, flip_y)
+	elseif sprite.kind == "basic" then
 		if flip_x == nil then flip_x = false end
 		if flip_y == nil then flip_y = false end
 		spr(sprite.id, x - sprite.ox, y - sprite.oy, sprite.w, sprite.h, flip_x, flip_y)
