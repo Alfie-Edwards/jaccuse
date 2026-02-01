@@ -146,7 +146,7 @@ function init_scenario()
 				name = "pig",
 				x = 64,
 				y = 98,
-				sprite = sprites.guest8,
+				sprite = sprites.small_pig,
 				dialogue = {
 					Line("Hello world 8."),
 					Questions({
