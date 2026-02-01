@@ -14,12 +14,15 @@ function init_sprites()
 		guest6 = sprite(10, 2, 2, 8, 16),
 		guest7 = sprite(12, 2, 2, 4, 16),
 		guest8 = sprite(14, 2, 2, 8, 16),
-		wall_corner = sprite(222, 1, 2, 0, 16),
-		wall_edge_h = sprite(223, 1, 2, 0, 16),
-		wall_edge_v = sprite(254, 1, 1, 0, 0),
-		-- floor = sprite(255, 1, 1, 0, 0),
+		wall_corner = sprite(128, 1, 2, 0, 16),
+		wall_edge_h = sprite(129, 1, 2, 0, 16),
+		wall_edge_v = sprite(160, 1, 1, 0, 0),
 		floor = adv_sprite(function(x, y)
 				spr(78, x, y, 2, 2)
+			end),
+
+		carpet = adv_sprite(function(x, y)
+				sspr(51, 64, 16, 16, x, y)
 			end),
 
 		body = adv_sprite(function(x, y)
