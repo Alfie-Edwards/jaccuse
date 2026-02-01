@@ -6,3 +6,5 @@
 !*.p8.*
 !*.lua
 !todo.txt
+!index.html
+!index.js
