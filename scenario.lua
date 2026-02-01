@@ -88,7 +88,7 @@ function init_scenario()
 				name = "5",
 				x = 200,
 				y = 200,
-				sprite = sprites.guest5,
+				sprite = sprites.small_alien,
 				dialogue = {
 					Line("Hello world 5."),
 					Questions({
@@ -104,7 +104,7 @@ function init_scenario()
 				name = "6",
 				x = 100,
 				y = 230,
-				sprite = sprites.guest6,
+				sprite = sprites.small_unicorn,
 				dialogue = {
 					Line("Hello world 6."),
 					Questions({
@@ -120,7 +120,7 @@ function init_scenario()
 				name = "7",
 				x = 120,
 				y = 230,
-				sprite = sprites.small_ghost_neutral,--sprites.guest7,
+				sprite = draw_small_ghost,
 				dialogue = {
 					Line("Hello world 7."),
 					Questions({
@@ -265,12 +265,15 @@ end
 
 
 function draw_guest(guest)
-	draw_sprite(sprites.guest_body, guest.x, guest.y)
-
-	if guest.sprite.kind == "basic" then
+	if type(guest.sprite) == "function" then
+		guest.sprite(guest.x, guest.y - sprites.guest_body.h * 8)
+	elseif guest.sprite.kind == "basic" then
+		draw_sprite(sprites.guest_body, guest.x, guest.y)
 		draw_sprite(guest.sprite, guest.x, guest.y - sprites.guest_body.h * 8)
 	elseif guest.sprite.kind == "advanced" then
-		guest.sprite.func(guest.x, guest.y - sprites.guest_body.h * 8)
+		local y = guest.y - sprites.guest_body.h * 8
+		sprites.body.func(guest.x, y)
+		guest.sprite.func(guest.x + 1, y - 16)
 	else
 		-- printh(guest.name..": ")
 		-- for k,v in pairs(guest) do

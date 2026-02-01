@@ -22,14 +22,15 @@ function init_sprites()
 				spr(78, x, y, 2, 2)
 			end),
 
+		body = adv_sprite(function(x, y)
+				sspr(16, 64, 11, 16, x, y)
+			end),
+
 		small_ghost_neutral = adv_sprite(function(x, y)
 				sspr(42, 32, 12, 16, x, y)
 			end),
 		small_unicorn = adv_sprite(function(x, y)
 				sspr(56, 32, 15, 16, x, y)
-			end),
-		small_ghost_move = adv_sprite(function(x, y)
-				sspr(99, 32, 13, 16, x, y)
 			end),
 		small_alien = adv_sprite(function(x, y)
 				sspr(72, 32, 13, 16, x, y)
@@ -37,17 +38,20 @@ function init_sprites()
 		small_horse = adv_sprite(function(x, y)
 				sspr(83, 32, 16, 16, x, y)
 			end),
+		small_ghost_move = adv_sprite(function(x, y)
+				sspr(99, 32, 13, 16, x, y)
+			end),
 		small_croc = adv_sprite(function(x, y)
 				sspr(0, 53, 16, 11, x, y)
 			end),
-		small_bird = adv_sprite(function(x, y)
+		small_doctor = adv_sprite(function(x, y)
 				sspr(22, 53, 15, 10, x, y)
 			end),
-		small_headless = adv_sprite(function(x, y)
-				rotate(38, 51, 2, x, y, 4, 13)
-			end),
+		-- small_headless = adv_sprite(function(x, y)
+		-- 		rotate(38, 51, 2, x, y, 4, 13)
+		-- 	end),
 		small_lion = adv_sprite(function(x, y)
-				sspr(44, 48, 15, 15, x, y)
+				sspr(44, 49, 14, 15, x, y)
 			end),
 		small_cat = adv_sprite(function(x, y)
 				sspr(59, 50, 12, 14, x, y)
@@ -67,6 +71,15 @@ function init_sprites()
 	}
 end
 
+
+function draw_small_ghost(x, y)
+	sprites.small_ghost_neutral.func(x, y)
+end
+
+function draw_small_unicorn(x, y)
+	sprites.body.func(x, y)
+	sprites.small_unicorn.func(x + 1, y - 16)
+end
 
 function reset_palette()
 	pal()
