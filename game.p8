@@ -9,6 +9,7 @@ __lua__
 #include player.lua
 #include scenario.lua
 #include speech.lua
+#include sprites.lua
 #include screens.lua
 
 
