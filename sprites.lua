@@ -21,8 +21,8 @@ function init_sprites()
 				spr(78, x, y, 2, 2)
 			end),
 
-		carpet = adv_sprite(function(x, y)
-				sspr(51, 64, 16, 16, x, y)
+		carpet = adv_sprite(function(x, y, flip_x, flip_y)
+				sspr(51, 64, 16, 16, x, y, 16, 16, flip_x, flip_y)
 			end),
 
 		body = adv_sprite(function(x, y)
@@ -157,7 +157,7 @@ function draw_sprite(sprite, x, y, flip_x, flip_y)
 		if flip_y == nil then flip_y = false end
 		spr(sprite.id, x - sprite.ox, y - sprite.oy, sprite.w, sprite.h, flip_x, flip_y)
 	elseif sprite.kind == "advanced" then
-		sprite.func(x, y)
+		sprite.func(x, y, flip_x, flip_y)
 	end
 end
 

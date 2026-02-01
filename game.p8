@@ -123,7 +123,8 @@ function draw_bg()
 	map(0, 0, 0, 0, 32, 32)
 
 	-- carpet
-	draw_sprite(sprites.carpet, room.w/2, room.h - 16)
+	draw_sprite(sprites.carpet, room.w/2, room.h - 16, true)
+	draw_sprite(sprites.carpet, room.w/2 - 16, room.h - 16)
 end
 
 function strobe(period, offset)
