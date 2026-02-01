@@ -574,11 +574,14 @@ function draw_guest(guest)
 		draw_sprite(sprites.guest_body, guest.x, guest.y)
 		draw_sprite(guest.sprite, guest.x, guest.y - sprites.guest_body.h * 8)
 	elseif guest.sprite.kind == "advanced" then
+		bodies = {sprites.body, sprites.body2, sprites.body3, sprites.body4}
 		local y = guest.y - sprites.guest_body.h * 8
 		-- local c = rnd(cols)
 		local c = cols[(#guest.name % #cols) + 1]
+		local b = bodies[(#guest.name % #bodies) + 1]
 		pal(7, c, 0)
-		sprites.body.func(guest.x, y)
+		-- sprites.body.func(guest.x, y)
+		b.func(guest.x, y)
 		pal(7, 7, 0)
 		guest.sprite.func(guest.x + 1, y - 16)
 	else

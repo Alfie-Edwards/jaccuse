@@ -28,6 +28,16 @@ function init_sprites()
 		body = adv_sprite(function(x, y)
 				sspr(16, 64, 11, 16, x, y)
 			end),
+		body2 = adv_sprite(function(x, y)
+			sspr(8, 80, 10, 16, x, y)
+			end),
+		body3 = adv_sprite(function(x, y)
+				sspr(18, 80, 14, 16, x, y)
+			end),
+		body4 = adv_sprite(function(x, y)
+				sspr(44, 80, 13, 16, x, y)
+			end),
+
 
 		small_ghost_neutral = adv_sprite(function(x, y)
 				sspr(42, 32, 12, 16, x, y)
