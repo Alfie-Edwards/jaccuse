@@ -7,6 +7,7 @@ end
 
 
 function add_clue(guest, clue_str)
+	music_state = "found_clue"
 	if clues[guest] == nil then
 		clues[guest] = wrap(clue_str, 26)
 	else
