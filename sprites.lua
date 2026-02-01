@@ -52,9 +52,10 @@ function init_sprites()
 		small_doctor = adv_sprite(function(x, y)
 				sspr(22, 53, 15, 10, x, y)
 			end),
-		-- small_headless = adv_sprite(function(x, y)
-		-- 		rotate(38, 51, 2, x, y, 4, 13)
-		-- 	end),
+		small_headless = adv_sprite(function(x, y)
+				-- rotate(38, 51, 2, x, y, 4, 13)
+				sspr(48, 19, 13, 4, x, y)
+			end),
 		small_lion = adv_sprite(function(x, y)
 				sspr(44, 49, 14, 15, x, y)
 			end),

@@ -94,7 +94,7 @@ function init_scenario()
 				name = "headless man",
 				x = 194,
 				y = 226,
-				sprite = sprites.guest5,
+				sprite = sprites.small_headless,
 				dialogue = {
 					Line("..."),
 					Questions({
