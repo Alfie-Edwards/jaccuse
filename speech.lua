@@ -85,18 +85,29 @@ end
 
 -- paras: str | list[str | OptionList]
 function say(paras)
-	if type(paras) == "string" or paras.class == OptionList then
+	if paras.class == OptionList then
 		paras = {paras}
 	end
-
-	for i,v in ipairs(paras) do
-		if type(v) == "string" then
-			paras[i] = wrap(v, 28, 4)
-		else
-			paras[i] = v
+	if type(paras) == "string" then
+		local lines = split(wrap(paras, 28), "\n")
+		local i = 0
+		paras = {}
+		while i < #lines do
+			printh(i)
+			printh(#paras)
+			if (#lines - i) == 1 then
+				add(paras, lines[i+1])
+			elseif (#lines - i) == 2 then
+				add(paras,  lines[i+1].."\n"..lines[i+2])
+			elseif (#lines - i) == 3 then
+				add(paras,  lines[i+1].."\n"..lines[i+2].."\n"..lines[i+3])
+			else
+				add(paras, lines[i+1].."\n"..lines[i+2].."\n"..lines[i+3].."\n"..lines[i+4])
+			end
+			i += 4
 		end
+		printh(#paras)
 	end
-
 	saying = {
 		char = 1,
 		para = 1,
