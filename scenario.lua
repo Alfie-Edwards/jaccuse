@@ -256,6 +256,7 @@ function accuse(guest)
 	if guest == nil then guest = interaction end
 	assert(guest ~= nil)
 	say("you unmask "..guest.name.."...")
+	music_state = "accused"
 	unmasking = true
 	accused = guest
 end
