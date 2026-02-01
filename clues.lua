@@ -32,9 +32,11 @@ function update_clues()
 	if clues_open then
 		if btnp(2) then
 			clue_scroll = max(0, clue_scroll - 1)
+			music_state = "scroll_clues"
 		elseif btnp(3) then
 			local num_clue_lines = #(split(all_clues_str(), "\n")) 
 			clue_scroll = min(max(0, num_clue_lines - num_lines_on_screen), clue_scroll + 1)
+			music_state = "scroll_clues"
 		end
 		if btnp(5) then
 			clues_open = false
@@ -45,6 +47,7 @@ function update_clues()
 		end
 	elseif not interaction and not saying and next(clues) ~= nil then
 		if btnp(4) then
+			music_state = "open_clues"
 			clues_open = true
 		else
 			prompt = "❎ view clues"
