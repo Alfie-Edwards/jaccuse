@@ -96,8 +96,30 @@ function _draw()
 	draw_clues()
 	draw_controls()
 	-- draw_mouse()
+	draw_questions_remaining(0, 0)
 end
 
+function draw_questions_remaining(x_offset, y_offset)
+	local pos = {x=4,y=12}
+
+	local outline_str = ""
+	for i=1,maximum_questions do
+		outline_str = outline_str.."?"
+	end
+	-- fn is expected to take (x_offset, y_offset) and not reset the palette
+	-- before drawing...
+	for y = -1, 1 do
+		for x = -1, 1 do
+			print(outline_str, pos.x+x, pos.y+y, 1)
+		end
+	end
+
+	local qns_str = ""
+	for i=1,player.questions_remaining do
+		qns_str = qns_str.."?"
+	end
+	print(qns_str, pos.x, pos.y, 8)
+end
 
 function draw_bg()
 	cls(0)
