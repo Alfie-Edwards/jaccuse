@@ -17,13 +17,43 @@ function init_sprites()
 		wall_corner = sprite(222, 1, 2, 0, 16),
 		wall_edge_h = sprite(223, 1, 2, 0, 16),
 		wall_edge_v = sprite(254, 1, 1, 0, 0),
-		floor = sprite(255, 1, 1, 0, 0),
+		-- floor = sprite(255, 1, 1, 0, 0),
+		floor = sprite(function(x, y)
+				spr(78, x, y, 2, 2)
+			end),
+
+		ghost_neutral = sprite(function(x, y)
+				local w, h = 12, 16
+				sspr(42, 32, w, h, x, y, w, h)
+			end),
+		ghost_move = sprite(function(x, y)
+				local w, h = 13, 16
+				sspr(99, 32, w, h, x, y, w, h)
+			end),
 	}
 end
 
 
 function reset_palette()
-	
+	pal()
+
+	pal(0, 0, 1)
+	pal(1, 1, 1)
+	pal(2, 130, 1)
+	pal(3, 3, 1)
+	pal(4, 4, 1)
+	pal(5, 5, 1)
+	pal(6, 131, 1)
+	pal(7, 7, 1)
+	pal(8, 135, 1)
+	pal(9, 139, 1)
+	pal(10, 10, 1)
+	pal(11, 143, 1)
+	pal(12, 142, 1)
+	pal(13, 13, 1)
+	pal(14, 14, 1)
+	pal(15, 15, 1)
+	palt(13, true)
 end
 
 
