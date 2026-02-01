@@ -18,17 +18,51 @@ function init_sprites()
 		wall_edge_h = sprite(223, 1, 2, 0, 16),
 		wall_edge_v = sprite(254, 1, 1, 0, 0),
 		-- floor = sprite(255, 1, 1, 0, 0),
-		floor = sprite(function(x, y)
+		floor = adv_sprite(function(x, y)
 				spr(78, x, y, 2, 2)
 			end),
 
-		ghost_neutral = sprite(function(x, y)
-				local w, h = 12, 16
-				sspr(42, 32, w, h, x, y, w, h)
+		small_ghost_neutral = adv_sprite(function(x, y)
+				sspr(42, 32, 12, 16, x, y)
 			end),
-		ghost_move = sprite(function(x, y)
-				local w, h = 13, 16
-				sspr(99, 32, w, h, x, y, w, h)
+		small_unicorn = adv_sprite(function(x, y)
+				sspr(56, 32, 15, 16, x, y)
+			end),
+		small_ghost_move = adv_sprite(function(x, y)
+				sspr(99, 32, 13, 16, x, y)
+			end),
+		small_alien = adv_sprite(function(x, y)
+				sspr(72, 32, 13, 16, x, y)
+			end),
+		small_horse = adv_sprite(function(x, y)
+				sspr(83, 32, 16, 16, x, y)
+			end),
+		small_croc = adv_sprite(function(x, y)
+				sspr(0, 53, 16, 11, x, y)
+			end),
+		small_bird = adv_sprite(function(x, y)
+				sspr(22, 53, 15, 10, x, y)
+			end),
+		small_headless = adv_sprite(function(x, y)
+				rotate(38, 51, 2, x, y, 4, 13)
+			end),
+		small_lion = adv_sprite(function(x, y)
+				sspr(44, 48, 15, 15, x, y)
+			end),
+		small_cat = adv_sprite(function(x, y)
+				sspr(59, 50, 12, 14, x, y)
+			end),
+		small_pig = adv_sprite(function(x, y)
+				sspr(71, 50, 14, 14, x, y)
+			end),
+		small_blackbeard = adv_sprite(function(x, y)
+				sspr(85, 48, 16, 16, x, y)
+			end),
+		small_police = adv_sprite(function(x, y)
+				sspr(101, 48, 14, 14, x, y)
+			end),
+		small_goblin = adv_sprite(function(x, y)
+				sspr(115, 48, 13, 12, x, y)
 			end),
 	}
 end
@@ -59,7 +93,7 @@ end
 
 function sprite(id, w, h, ox, oy)
 	return {
-		type = "basic",
+		kind = "basic",
 		id = id,
 		w = w,
 		h = h,
@@ -71,52 +105,90 @@ end
 
 function adv_sprite(func)
 	return {
-		type = "advanced",
+		kind = "advanced",
 		func = func,
 	}
 end
 
 
 function draw_sprite(sprite, x, y, flip_x, flip_y)
-	if sprite.type == "basic" then
+	if sprite.kind == "basic" then
 		if flip_x == nil then flip_x = false end
 		if flip_y == nil then flip_y = false end
 		spr(sprite.id, x - sprite.ox, y - sprite.oy, sprite.w, sprite.h, flip_x, flip_y)
-	elseif sprite.type == "advanced" then
+	elseif sprite.kind == "advanced" then
 		sprite.func(x, y)
 	end
 end
 
 
-function draw_rotated_anticlockwise(x, y, w_tiles, h_tiles, map_x, map_y, flip_y)
-	if (flip_y == nil) flip_y = false
-
-	local w_px = w_tiles * 8 - 1
-	local h_px = h_tiles * 8 - 1
-
-	for i = 0, h_px do
-		local map_y_idx = flip_y and (h_px - i)/8 or i/8
-		tline(
-			x + i, (y + w_px),
-			x + i, (y + w_px) - w_px,
-			map_x, map_y + map_y_idx
-		)
+-- mode 0: clockwise 90
+-- mode 1: clockwise 270
+-- mode 2: mirror + clockwise 90
+-- mode 3: mirror + clockwise 270
+-- dx,dy: screen position
+-- function rotate(sprite,mode,dx,dy,w,h)
+function rotate(sprite_x_px, sprite_y_px,mode,dx,dy,w_px,h_px)
+	local sx=sprite_x_px
+	local sy=sprite_y_px
+	w,h=w_px,h_px
+	local ya,yb,xa,xb=0,1,0,1
+	if mode==0 then
+		ya,yb=h,-1
+	elseif mode==1 then
+		xa,xb=w,-1
+	elseif mode==2 then
+		ya,yb,xa,xb=h,-1,w,-1
+	end
+	for y=0,h do
+		for x=0,w do
+			pset((y-ya)*yb+dx,(x-xa)*xb+dy,sget(x+sx,y+sy))
+		end
 	end
 end
 
+-- function draw_rotated_anticlockwise_px(x, y, w_px, h_px, map_x, map_y, flip_y)
+-- 	if (flip_y == nil) flip_y = false
 
-function draw_rotated_clockwise(x, y, w_tiles, h_tiles, map_x, map_y, flip_y)
-	if (flip_y == nil) flip_y = false
+-- 	for i = 0, h_px do
+-- 		local map_y_idx = flip_y and (h_px - i)/8 or i/8
+-- 		tline(
+-- 			x + i, (y + w_px),
+-- 			x + i, (y + w_px) - w_px,
+-- 			map_x, map_y + map_y_idx
+-- 		)
+-- 	end
+-- end
 
-	local w_px = w_tiles * 8 - 1
-	local h_px = h_tiles * 8 - 1
+-- function draw_rotated_anticlockwise(x, y, w_tiles, h_tiles, map_x, map_y, flip_y)
+-- 	if (flip_y == nil) flip_y = false
 
-	for i = 0, h_px do
-		local map_y_idx = flip_y and (h_px - i)/8 or i/8
-		tline(
-			x + i, y,
-			x + i, y + w_px,
-			map_x, map_y + map_y_idx
-		)
-	end
-end
+-- 	local w_px = w_tiles * 8 - 1
+-- 	local h_px = h_tiles * 8 - 1
+
+-- 	for i = 0, h_px do
+-- 		local map_y_idx = flip_y and (h_px - i)/8 or i/8
+-- 		tline(
+-- 			x + i, (y + w_px),
+-- 			x + i, (y + w_px) - w_px,
+-- 			map_x, map_y + map_y_idx
+-- 		)
+-- 	end
+-- end
+
+
+-- function draw_rotated_clockwise(x, y, w_tiles, h_tiles, map_x, map_y, flip_y)
+-- 	if (flip_y == nil) flip_y = false
+
+-- 	local w_px = w_tiles * 8 - 1
+-- 	local h_px = h_tiles * 8 - 1
+
+-- 	for i = 0, h_px do
+-- 		local map_y_idx = flip_y and (h_px - i)/8 or i/8
+-- 		tline(
+-- 			x + i, y,
+-- 			x + i, y + w_px,
+-- 			map_x, map_y + map_y_idx
+-- 		)
+-- 	end
+-- end

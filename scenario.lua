@@ -120,7 +120,7 @@ function init_scenario()
 				name = "7",
 				x = 120,
 				y = 230,
-				sprite = sprites.guest7,
+				sprite = sprites.small_ghost_neutral,--sprites.guest7,
 				dialogue = {
 					Line("Hello world 7."),
 					Questions({
@@ -266,5 +266,19 @@ end
 
 function draw_guest(guest)
 	draw_sprite(sprites.guest_body, guest.x, guest.y)
-	draw_sprite(guest.sprite, guest.x, guest.y - sprites.guest_body.h * 8)
+
+	if guest.sprite.kind == "basic" then
+		draw_sprite(guest.sprite, guest.x, guest.y - sprites.guest_body.h * 8)
+	elseif guest.sprite.kind == "advanced" then
+		guest.sprite.func(guest.x, guest.y - sprites.guest_body.h * 8)
+	else
+		-- printh(guest.name..": ")
+		-- for k,v in pairs(guest) do
+		-- 	printh("    "..k..": "..tostring(v))
+		-- end
+		-- for k,v in pairs(guest.sprite) do
+		-- 	printh("    sprite."..k..": "..tostring(v))
+		-- end
+		assert(false == "unexpected sprite kind "..tostring(guest.sprite.kind))
+	end
 end
