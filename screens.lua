@@ -55,7 +55,7 @@ function draw_screens()
 		draw_win_screen()
 		return 1
 	end
-	if lost then
+	if lost() then
 		draw_lose_screen()
 		return 1
 	end

@@ -25,7 +25,6 @@ maximum_questions = 5
 function _init()
 	-- Disable repeated keypresses when holding down key.
 	poke(0x5f5c, 255)
-	lost = false
 
 	init_sprites()
 	init_screens()

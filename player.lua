@@ -39,7 +39,8 @@ end
 function choose_question()
 	player.questions_remaining -= 1
 	if player.questions_remaining < 0 then
-		lost = true
+		-- TODO #finish
+		printh("you lose!!!")
 	end
 end
 

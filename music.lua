@@ -19,7 +19,7 @@ function update_music()
 		music(-1)
 		music(24)
 		music_state = "won"
-	elseif music_state ~= "lost" and lost then
+	elseif music_state ~= "lost" and lost() then
 		music(-1)
 		music(32)
 		music_state = "lost"
