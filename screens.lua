@@ -118,7 +118,9 @@ function draw_win_screen()
 	cls(0)
 
 	color(10)
-	print_centered("you found the monster!!!", 60)
+	print_centered("you found the monster!!!", 50)
+	print_centered("this is gonna go crazy", 65)
+	print_centered("on spooktube!", 72)
 end
 
 function draw_wrong_screen()
