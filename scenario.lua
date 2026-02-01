@@ -24,7 +24,7 @@ function init_scenario()
 				name = "unicorn",
 				x = 44,
 				y = 66,
-				sprite = sprites.guest1,
+				sprite = sprites.small_unicorn,
 				dialogue = {
 					Line("hey there :)"),
 					Questions({
@@ -40,7 +40,7 @@ function init_scenario()
 				name = "alien",
 				x = 29,
 				y = 13,
-				sprite = sprites.guest2,
+				sprite = sprites.small_alien,
 				dialogue = {
 					Line("greetings earthling."),
 					Questions({
@@ -58,7 +58,7 @@ function init_scenario()
 				name = "crocodile",
 				x = 92,
 				y = 27,
-				sprite = sprites.guest3,
+				sprite = sprites.small_croc,
 				dialogue = {
 					Line("Hello world 3."),
 					Questions({
@@ -76,7 +76,7 @@ function init_scenario()
 				name = "plague doctor",
 				x = 26,
 				y = 66,
-				sprite = sprites.guest4,
+				sprite = sprites.small_doctor,
 				dialogue = {
 					Line("heyy"),
 					Questions({
@@ -112,7 +112,7 @@ function init_scenario()
 				name = "bristol lion",
 				x = 14,
 				y = 130,
-				sprite = sprites.guest6,
+				sprite = sprites.small_lion,
 				dialogue = {
 					Line("oh, hey"),
 					Questions({
@@ -130,7 +130,7 @@ function init_scenario()
 				name = "big cat",
 				x = 37,
 				y = 110,
-				sprite = sprites.guest7,
+				sprite = sprites.small_cat,
 				dialogue = {
 					Line("meow"),
 					Questions({
@@ -164,7 +164,7 @@ function init_scenario()
 				name = "blackbeard",
 				x = 35,
 				y = 18,
-				sprite = sprites.guest8,
+				sprite = sprites.small_blackbeard,
 				dialogue = {
 					Line("Hello world 8."),
 					Questions({
@@ -180,7 +180,7 @@ function init_scenario()
 				name = "parking attendant",
 				x = 158,
 				y = 28,
-				sprite = sprites.guest8,
+				sprite = sprites.small_police,
 				dialogue = {
 					Line("Hello world 8."),
 					Questions({
@@ -198,7 +198,7 @@ function init_scenario()
 				name = "goblin of pen park hole",
 				x = 73,
 				y = 168,
-				sprite = sprites.guest8,
+				sprite = sprites.small_goblin,
 				dialogue = {
 					Line("hello there!"),
 					Questions({
@@ -216,7 +216,7 @@ function init_scenario()
 				name = "ghost 1",
 				x = 233,
 				y = 211,
-				sprite = sprites.guest8,
+				sprite = draw_small_ghost,
 				dialogue = {
 					Line("wooOooOo!"),
 					Questions({
@@ -231,7 +231,7 @@ function init_scenario()
 				name = "ghost 2",
 				x = 200,
 				y = 101,
-				sprite = sprites.guest8,
+				sprite = draw_small_ghost,
 				dialogue = {
 					Line("wooOooOo!"),
 					Questions({
@@ -245,7 +245,7 @@ function init_scenario()
 				name = "ghost 3",
 				x = 93,
 				y = 23,
-				sprite = sprites.guest8,
+				sprite = draw_small_ghost,
 				dialogue = {
 					Line("wooOooOo!"),
 					Questions({
@@ -259,7 +259,7 @@ function init_scenario()
 				name = "ghost 4",
 				x = 41,
 				y = 141,
-				sprite = sprites.guest8,
+				sprite = draw_small_ghost,
 				dialogue = {
 					Line("wooOooOo!"),
 					Questions({
@@ -273,7 +273,7 @@ function init_scenario()
 				name = "ghost 5",
 				x = 233,
 				y = 211,
-				sprite = sprites.guest8,
+				sprite = draw_small_ghost,
 				dialogue = {
 					Line("wooOooOo!"),
 					Questions({
@@ -287,7 +287,7 @@ function init_scenario()
 				name = "ghost 6",
 				x = 169,
 				y = 164,
-				sprite = sprites.guest8,
+				sprite = draw_small_ghost,
 				dialogue = {
 					Line("wooOooOo!"),
 					Questions({
@@ -301,7 +301,7 @@ function init_scenario()
 				name = "ghost 7",
 				x = 84,
 				y = 45,
-				sprite = sprites.guest8,
+				sprite = draw_small_ghost,
 				dialogue = {
 					Line("wooOooOo!"),
 					Questions({
@@ -315,7 +315,7 @@ function init_scenario()
 				name = "ghost 8",
 				x = 102,
 				y = 105,
-				sprite = sprites.guest8,
+				sprite = draw_small_ghost,
 				dialogue = {
 					Line("wooOooOo!"),
 					Questions({
@@ -329,7 +329,7 @@ function init_scenario()
 				name = "ghost 9",
 				x = 86,
 				y = 198,
-				sprite = sprites.guest8,
+				sprite = draw_small_ghost,
 				dialogue = {
 					Line("wooOooOo!"),
 					Questions({
@@ -343,7 +343,7 @@ function init_scenario()
 				name = "ghost 10",
 				x = 74,
 				y = 14,
-				sprite = sprites.guest8,
+				sprite = draw_small_ghost,
 				dialogue = {
 					Line("wooOooOo!"),
 					Questions({
@@ -357,7 +357,7 @@ function init_scenario()
 				name = "ghost 11",
 				x = 157,
 				y = 197,
-				sprite = sprites.guest8,
+				sprite = draw_small_ghost,
 				dialogue = {
 					Line("wooOooOo!"),
 					Questions({
@@ -371,7 +371,7 @@ function init_scenario()
 				name = "ghost 12",
 				x = 162,
 				y = 156,
-				sprite = sprites.guest8,
+				sprite = draw_small_ghost,
 				dialogue = {
 					Line("wooOooOo!"),
 					Questions({
@@ -385,7 +385,7 @@ function init_scenario()
 				name = "ghost 13",
 				x = 230,
 				y = 70,
-				sprite = sprites.guest8,
+				sprite = draw_small_ghost,
 				dialogue = {
 					Line("wooOooOo!"),
 					Questions({
@@ -399,7 +399,7 @@ function init_scenario()
 				name = "ghost 14",
 				x = 16,
 				y = 85,
-				sprite = sprites.guest8,
+				sprite = draw_small_ghost,
 				dialogue = {
 					Line("wooOooOo!"),
 					Questions({
@@ -413,7 +413,7 @@ function init_scenario()
 				name = "ghost 15",
 				x = 163,
 				y = 160,
-				sprite = sprites.guest8,
+				sprite = draw_small_ghost,
 				dialogue = {
 					Line("wooOooOo!"),
 					Questions({
@@ -565,6 +565,24 @@ end
 
 
 function draw_guest(guest)
-	draw_sprite(sprites.guest_body, guest.x, guest.y)
-	draw_sprite(guest.sprite, guest.x, guest.y - sprites.guest_body.h * 8)
+	printh(tostring(guest).." "..guest.name.." is "..tostring(guest.sprite))
+	if type(guest.sprite) == "function" then
+		guest.sprite(guest.x, guest.y - sprites.guest_body.h * 8)
+	elseif guest.sprite.kind == "basic" then
+		draw_sprite(sprites.guest_body, guest.x, guest.y)
+		draw_sprite(guest.sprite, guest.x, guest.y - sprites.guest_body.h * 8)
+	elseif guest.sprite.kind == "advanced" then
+		local y = guest.y - sprites.guest_body.h * 8
+		sprites.body.func(guest.x, y)
+		guest.sprite.func(guest.x + 1, y - 16)
+	else
+		-- printh(guest.name..": ")
+		-- for k,v in pairs(guest) do
+		-- 	printh("    "..k..": "..tostring(v))
+		-- end
+		-- for k,v in pairs(guest.sprite) do
+		-- 	printh("    sprite."..k..": "..tostring(v))
+		-- end
+		assert(false == "unexpected sprite kind "..tostring(guest.sprite.kind))
+	end
 end

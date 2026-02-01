@@ -67,7 +67,7 @@ function draw_clues()
 			clipped_clue_str = clipped_clue_str.."\n"..clue_lines[i+1]
 		end
 
-		color(7)
+		color(6)
 		rectfill(3, 14, 124, 122)
 
 		-- Draw dashed top of paper if can be scrolled up

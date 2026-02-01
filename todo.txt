@@ -44,3 +44,4 @@ POLISH
 [ ] Guests bob up and down
 [ ] Something above character's head when interactable (maybe like a small greeting?)
 [x] Draw player behind guests when y is lower
+[ ] Polaroids

@@ -87,11 +87,6 @@ function wrap(text, max_line_len, max_lines)
 end
 
 
-function reset_palette()
-	palt()
-end
-
-
 function any_input()
     return btnp(4) or btnp(5) or mouse.pressed
 end
