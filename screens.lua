@@ -83,14 +83,14 @@ function lost()
 end
 
 function draw_start_screen()
-	cls(11)
+	cls(8)
 
-	color(14)
-	print_centered("j'accuse", 60)
-	color(0)
-	print_centered("j'accuse", 59)
+	color(2)
+	print_centered("j'accuse!", 60)
+	color(7)
+	print_centered("j'accuse!", 59)
 
-	color(14)
+	color(2)
 	if strobe(0.66) then
 		print_centered("PRESS ANY BUTTON...", 100)
 	end
@@ -101,17 +101,17 @@ function draw_intro_screen()
 		return
 	end
 
-	cls(1)
+	cls(0)
 
-	color(9)
+	color(12)
 	print_centered(intro_string, 60)
 end
 
 function draw_win_screen()
-	cls(9)
+	cls(0)
 
-	color(7)
-	print_centered("you win!!!", 60)
+	color(10)
+	print_centered("you found the monster!!!", 60)
 end
 
 function draw_lose_screen()
