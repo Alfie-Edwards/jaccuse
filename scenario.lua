@@ -428,6 +428,10 @@ function init_scenario()
 
 	scenario = main
 	interaction = nil
+
+	for _, guest in ipairs(main.guests) do
+		guest.bob_offset = rnd(0.66)
+	end
 end
 
 
@@ -568,8 +572,13 @@ cols = {11, 1, 2, 5, 6}
 
 function draw_guest(guest)
 	-- printh(tostring(guest).." "..guest.name.." is "..tostring(guest.sprite))
+
 	if type(guest.sprite) == "function" then
-		guest.sprite(guest.x, guest.y - sprites.guest_body.h * 8)
+		if strobe(0.66, guest.bob_offset) then
+			guest.sprite(guest.x, guest.y + 1 - sprites.guest_body.h * 8)
+		else
+			guest.sprite(guest.x, guest.y - sprites.guest_body.h * 8)
+		end
 	elseif guest.sprite.kind == "basic" then
 		draw_sprite(sprites.guest_body, guest.x, guest.y)
 		draw_sprite(guest.sprite, guest.x, guest.y - sprites.guest_body.h * 8)
@@ -583,7 +592,11 @@ function draw_guest(guest)
 		-- sprites.body.func(guest.x, y)
 		b.func(guest.x, y)
 		pal(7, 7, 0)
-		guest.sprite.func(guest.x + 1, y - 16)
+		if strobe(0.66, guest.bob_offset) then
+			guest.sprite.func(guest.x + 1, y - 15)
+		else
+			guest.sprite.func(guest.x + 1, y - 16)
+		end
 	else
 		-- printh(guest.name..": ")
 		-- for k,v in pairs(guest) do
