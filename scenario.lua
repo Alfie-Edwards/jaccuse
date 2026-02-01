@@ -18,7 +18,7 @@ end)
 
 function init_scenario()
 	main = {
-		guilty = 1,
+		guilty = "1",
 		guests = {
 			{
 				name = "1",
@@ -250,15 +250,39 @@ function say_idx(guest, idx)
 	return true
 end
 
-function update_interaction()
-	interaction = get_interaction()
+unmasking = false
+accused = nil
+function accuse(guest)
+	if guest == nil then guest = interaction end
+	assert(guest ~= nil)
+	say("you unmask "..guest.name.."...")
+	unmasking = true
+	accused = guest
+end
 
-	if interaction then
-		if btnp(4) then
-			start_talking_to()
-			interaction = nil
-		else
-			prompt = { "❎ talk",  "🅾️ j'accuse!" }
+function update_interaction()
+	if unmasking then
+		if not saying then
+			assert(accused ~= nil)
+			if accused.name == main.guilty then
+				won = true
+			else
+				guessed_wrong = true
+			end
+		end
+	else
+		interaction = get_interaction()
+
+		if interaction then
+			if btnp(4) then
+				start_talking_to()
+				interaction = nil
+			elseif btnp(5) then
+				accuse()
+				interaction = nil
+			else
+				prompt = { "❎ talk",  "🅾️ j'accuse!" }
+			end
 		end
 	end
 end

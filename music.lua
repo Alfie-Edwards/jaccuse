@@ -15,7 +15,7 @@ function update_music()
 	elseif music_state == "scroll_clues" then
 		sfx(13)
 		music_state = nil
-	elseif music_state ~= "won" and won() then
+	elseif music_state ~= "won" and won then
 		music(-1)
 		music(24)
 		music_state = "won"
