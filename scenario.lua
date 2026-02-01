@@ -564,6 +564,8 @@ function update_interaction()
 end
 
 
+cols = {11, 1, 2, 5, 6}
+
 function draw_guest(guest)
 	printh(tostring(guest).." "..guest.name.." is "..tostring(guest.sprite))
 	if type(guest.sprite) == "function" then
@@ -573,7 +575,11 @@ function draw_guest(guest)
 		draw_sprite(guest.sprite, guest.x, guest.y - sprites.guest_body.h * 8)
 	elseif guest.sprite.kind == "advanced" then
 		local y = guest.y - sprites.guest_body.h * 8
+		-- local c = rnd(cols)
+		local c = cols[(#guest.name % #cols) + 1]
+		pal(7, c, 0)
 		sprites.body.func(guest.x, y)
+		pal(7, 7, 0)
 		guest.sprite.func(guest.x + 1, y - 16)
 	else
 		-- printh(guest.name..": ")
