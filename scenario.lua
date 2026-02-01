@@ -60,7 +60,7 @@ function init_scenario()
 				y = 27,
 				sprite = sprites.small_croc,
 				dialogue = {
-					Line("Hello world 3."),
+					Line("hello!"),
 					Questions({
 						Question("tell me about your costume.", Line("bristol crocodile. beloved character. lives in river!",
 						                                             "dressed as the bristol crocodile.")),
@@ -148,7 +148,7 @@ function init_scenario()
 				y = 98,
 				sprite = sprites.small_pig,
 				dialogue = {
-					Line("Hello world 8."),
+					Line("oink oink."),
 					Questions({
 						Question("tell me about your costume.", Line("i mean... its a pig.",
 						                                             "dressed as a pig")),
@@ -162,11 +162,11 @@ function init_scenario()
 			},
 			{
 				name = "blackbeard",
-				x = 35,
-				y = 18,
+				x = 10,
+				y = 63,
 				sprite = sprites.small_blackbeard,
 				dialogue = {
-					Line("Hello world 8."),
+					Line("..."),
 					Questions({
 						Question("tell me about your costume.", Line("i feel sick...",
 						                                             "feels sick.")),
@@ -182,7 +182,7 @@ function init_scenario()
 				y = 28,
 				sprite = sprites.small_police,
 				dialogue = {
-					Line("Hello world 8."),
+					Line("yo."),
 					Questions({
 						Question("tell me about your costume.", Line("i'm the fabled bristol zoo parking attendant, who apparently made millions pretending to work for the zoo.'",
 						                                             "dressed as the bristol zoo parking attendant\n\nthe bristol zoo parking attendant made millions.")),
@@ -243,7 +243,7 @@ function init_scenario()
 			},
 			{
 				name = "ghost 3",
-				x = 93,
+				x = 113,
 				y = 23,
 				sprite = draw_small_ghost,
 				dialogue = {
@@ -369,7 +369,7 @@ function init_scenario()
 			},
 			{
 				name = "ghost 12",
-				x = 162,
+				x = 142,
 				y = 156,
 				sprite = draw_small_ghost,
 				dialogue = {
@@ -383,8 +383,8 @@ function init_scenario()
 			},
 			{
 				name = "ghost 13",
-				x = 230,
-				y = 70,
+				x = 240,
+				y = 90,
 				sprite = draw_small_ghost,
 				dialogue = {
 					Line("wooOooOo!"),
@@ -411,8 +411,8 @@ function init_scenario()
 			},
 			{
 				name = "ghost 15",
-				x = 163,
-				y = 160,
+				x = 133,
+				y = 180,
 				sprite = draw_small_ghost,
 				dialogue = {
 					Line("wooOooOo!"),
