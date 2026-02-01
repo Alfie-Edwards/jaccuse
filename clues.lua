@@ -107,7 +107,7 @@ function draw_clues()
 
 		for offset, sprite in pairs(sprite_index) do
 			if offset >= (clue_scroll + 3) and offset <= bottom_line then
-				draw_sprite(sprite, 16, 20 + 6 * (offset - clue_scroll))
+				draw_sprite(sprite, 16, 4 + 6 * (offset - clue_scroll))
 			end
 		end
 	end
