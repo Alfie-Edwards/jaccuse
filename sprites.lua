@@ -41,8 +41,10 @@ function init_sprites()
 		small_horse = adv_sprite(function(x, y)
 				sspr(83, 32, 16, 16, x, y)
 			end),
-		small_ghost_move = adv_sprite(function(x, y)
-				sspr(99, 32, 13, 16, x, y)
+		small_ghost_move = adv_sprite(function(x, y, flip)
+				local w,h = 13, 16
+				if flip == nil then flip = false end
+				sspr(99, 32, w, h, x, y, w, h, flip, false)
 			end),
 		small_croc = adv_sprite(function(x, y)
 				sspr(0, 53, 16, 11, x, y)
