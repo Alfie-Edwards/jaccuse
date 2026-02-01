@@ -108,10 +108,10 @@ function draw_intro_screen()
 end
 
 function draw_win_screen()
-	cls(9)
+	cls(0)
 
-	color(7)
-	print_centered("you win!!!", 60)
+	color(10)
+	print_centered("you found the monster!!!", 60)
 end
 
 function draw_lose_screen()
