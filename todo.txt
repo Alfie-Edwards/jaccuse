@@ -29,8 +29,8 @@ ART
 SOUNDS
 [x] Talking - 06
 [x] Walking - 05
-[x] Epic BGM - play from pattern 01
-[ ] Dramatic accuse sound
+[x] Epic BGM - music pattern 01
+[x] Dramatic accuse sound - music pattern 16
 [ ] Win music
 [ ] Lose music
 [ ] Ambient sounds?
