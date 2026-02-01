@@ -567,7 +567,7 @@ end
 cols = {11, 1, 2, 5, 6}
 
 function draw_guest(guest)
-	printh(tostring(guest).." "..guest.name.." is "..tostring(guest.sprite))
+	-- printh(tostring(guest).." "..guest.name.." is "..tostring(guest.sprite))
 	if type(guest.sprite) == "function" then
 		guest.sprite(guest.x, guest.y - sprites.guest_body.h * 8)
 	elseif guest.sprite.kind == "basic" then

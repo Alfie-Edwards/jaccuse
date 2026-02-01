@@ -134,5 +134,10 @@ function draw_oot_screen()
 	cls(0)
 
 	color(8)
-	print_centered("you lost!!!", 60)
+	print_centered("you asked too many questions!", 50)
+
+	color(7)
+	print_centered("the clock struck midnight...", 70)
+	color(12)
+	print_centered("then the moster ate you!", 78)
 end

@@ -41,6 +41,7 @@ function choose_question()
 	if player.questions_remaining < 0 then
 		-- TODO #finish
 		printh("you lose!!!")
+		out_of_questions = true
 	end
 end
 
