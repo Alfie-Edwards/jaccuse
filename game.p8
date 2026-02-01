@@ -137,8 +137,8 @@ end
 
 
 function draw_sprite(sprite, x, y, flip_x, flip_y)
-	if flip_x == nil then flip_x = false end
-	if flip_y == nil then flip_y = false end
+	if (flip_x == nil) flip_x = false
+	if (flip_y == nil) flip_y = false
 	spr(sprite.id, x - sprite.ox, y - sprite.oy, sprite.w, sprite.h, flip_x, flip_y)
 end
 

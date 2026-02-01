@@ -1,6 +1,6 @@
 PROGRAMMING
 
-[ ] Menu screen
+[x] Menu screen
 [ ] Intro scene?
 [ ] Accuse screen wrong guess (remove mask, human face underneath, closeup using big head sprites?)
 [ ] Accuse screen correct guess (creature cries and goes home)
@@ -8,7 +8,7 @@ PROGRAMMING
 [ ] Win screen (your post on your cryptid blog got 1000 views)
 [ ] Showing chat heads in dialogue
 [ ] Multiple questions (scroll with up/down?)
-[ ] Clues from some questions
+[x] Clues from some questions
 [x] Turning character sprite
 [ ] Notebook
 
