@@ -10,6 +10,7 @@ __lua__
 #include scenario.lua
 #include speech.lua
 #include screens.lua
+#include music.lua
 
 
 room = {
@@ -49,6 +50,7 @@ function _init()
 	init_player()
 	init_scenario()
 	init_speech()
+	init_music()
 	reset_palette()
 end
 
@@ -62,6 +64,7 @@ function _update60()
 	update_clues()
 	update_interaction()
 	update_speech()
+	update_music()
 end
 
 -- draw ------------------------
