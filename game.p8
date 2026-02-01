@@ -11,6 +11,7 @@ __lua__
 #include speech.lua
 #include sprites.lua
 #include screens.lua
+#include music.lua
 
 
 room = {
@@ -32,6 +33,7 @@ function _init()
 	init_player()
 	init_scenario()
 	init_speech()
+	init_music()
 	reset_palette()
 end
 
@@ -45,6 +47,7 @@ function _update60()
 	update_clues()
 	update_interaction()
 	update_speech()
+	update_music()
 end
 
 -- draw ------------------------
@@ -363,7 +366,7 @@ __music__
 00 41424344
 00 41424344
 00 41424344
-00 0e0f4344
+04 0e0f4344
 00 41424344
 00 41424344
 00 41424344
@@ -371,7 +374,7 @@ __music__
 00 41424344
 00 41424344
 00 41424344
-00 10111244
+04 10111244
 00 41424344
 00 41424344
 00 41424344
@@ -379,5 +382,5 @@ __music__
 00 41424344
 00 41424344
 00 41424344
-00 13141544
+04 13141544
 

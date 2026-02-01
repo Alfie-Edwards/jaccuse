@@ -1,9 +1,9 @@
 function init_screens()
 	scene = "menu"
 	intro_strings = {
-		"I am crocodile",
-		"I will eat you!",
-		"Bwa ha ha ha!",
+		"the party's all in masks...",
+		"but one is a real monster!",
+		"find it before it eats everyone!",
 	}
 
 	intro_string = nil
@@ -33,6 +33,9 @@ function intro_scene()
 	scene = "game"
 end
 
+won = false
+guessed_wrong = false
+out_of_questions = false
 function draw_screens()
 	if scene == "menu" then
 		draw_start_screen()
@@ -48,7 +51,7 @@ function draw_screens()
 		return 1
 	end
 
-	if won() then
+	if won then
 		draw_win_screen()
 		return 1
 	end
@@ -58,24 +61,25 @@ function draw_screens()
 	end
 end
 
-function won()
-	-- TODO: Assign accused variable elsewhere
-	return (
-		scenario ~= nil and
-		accused ~= nil and
-		accused == scenario.guilty and
-		scene == "game"
-	)
-end
+-- function won()
+-- 	-- TODO: Assign accused variable elsewhere
+-- 	return (
+-- 		scenario ~= nil and
+-- 		accused ~= nil and
+-- 		accused.name == scenario.guilty and
+-- 		scene == "game"
+-- 	)
+-- end
 
 function lost()
-	-- TODO: Assign accused variable elsewhere
-	return (
-		scenario ~= nil and
-		accused ~= nil and
-		accused ~= scenario.guilty and
-		scene == "game"
-	)
+	return guessed_wrong or out_of_questions
+-- 	-- TODO: Assign accused variable elsewhere
+-- 	return (
+-- 		scenario ~= nil and
+-- 		accused ~= nil and
+-- 		accused.name ~= scenario.guilty and
+-- 		scene == "game"
+-- 	)
 end
 
 function draw_start_screen()
