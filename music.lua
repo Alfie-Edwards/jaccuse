@@ -4,7 +4,7 @@ end
 
 function update_music()
 	if music_state == "intro" and scene == "game" then
-		music(0)
+		music(1)
 		music_state = "bg_music"
 	elseif music_state == "found_clue" then
 		sfx(7)
