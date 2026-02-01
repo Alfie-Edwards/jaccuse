@@ -19,6 +19,8 @@ function init_player()
 
 		max_speed = 1,
 
+		questions_remaining = maximum_questions,
+
 		talking_to = nil,  -- nil|{guest=(table),idx=(int)}
 
 		seen_clues = {},  -- {guest name (str): list of clues (strs)}
@@ -32,6 +34,14 @@ function init_player()
 		},
 		last_released = direction.down,
 	}
+end
+
+function choose_question()
+	player.questions_remaining -= 1
+	if player.questions_remaining == 0 then
+		-- TODO #finish
+		printh("you lose!!!")
+	end
 end
 
 function move(dir)

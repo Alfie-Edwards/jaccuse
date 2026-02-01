@@ -1,16 +1,17 @@
 PROGRAMMING
 
 [x] Menu screen
-[ ] Intro scene?
-[ ] Accuse screen wrong guess (remove mask, human face underneath, closeup using big head sprites?)
+[x] Intro scene?
+[ ] Accuse screen wrong guess (remove mask, human face underneath, closeup using big head sprites?, "you lose!")
 [ ] Accuse screen correct guess (creature cries and goes home)
-[ ] Lose screen (you got kicked out)
+[ ] Lose screen (you took too long)
 [ ] Win screen (your post on your cryptid blog got 1000 views)
 [ ] Showing chat heads in dialogue
-[ ] Multiple questions (scroll with up/down?)
+[x] Multiple questions (scroll with up/down?)
 [x] Clues from some questions
 [x] Turning character sprite
-[ ] Notebook
+[x] Notebook
+[x] Limited questions
 
 SCENARIO DESIGN
 

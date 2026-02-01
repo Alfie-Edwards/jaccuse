@@ -17,6 +17,8 @@ room = {
 	h = 256,
 }
 
+maximum_questions = 5
+
 -- init ------------------------
 function _init()
 	-- Disable repeated keypresses when holding down key.

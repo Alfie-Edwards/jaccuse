@@ -220,6 +220,7 @@ function get_to_say(guest, idx)
 		local opts = {}
 		for _,qn in ipairs(current_stage.normal_questions) do
 			add(opts, Option(qn.question, function()
+				choose_question()
 				see_clue(guest, qn.result.maybe_clue)
 				say(qn.result.text)
 			end))
