@@ -1,9 +1,9 @@
 function init_screens()
 	scene = "menu"
 	intro_strings = {
-		"I am crocodile",
-		"I will eat you!",
-		"Bwa ha ha ha!",
+		"the party's all in masks...",
+		"but one is a real monster!",
+		"find it before it eats everyone!",
 	}
 
 	intro_string = nil
