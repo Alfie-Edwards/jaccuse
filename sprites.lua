@@ -43,10 +43,10 @@ function init_sprites()
 				sspr(42, 32, 12, 16, x, y)
 			end),
 		small_unicorn = adv_sprite(function(x, y)
-				sspr(56, 32, 15, 16, x, y + 1)
+				sspr(56, 32, 15, 16, x + 1, y + 1)
 			end),
 		small_alien = adv_sprite(function(x, y)
-				sspr(71, 32, 12, 16, x - 1, y + 1)
+				sspr(71, 32, 12, 16, x - 2, y + 1)
 			end),
 		small_horse = adv_sprite(function(x, y)
 				sspr(83, 32, 16, 16, x, y)
@@ -57,10 +57,10 @@ function init_sprites()
 				sspr(99, 32, w, h, x, y, w, h, flip, false)
 			end),
 		small_croc = adv_sprite(function(x, y)
-				sspr(0, 53, 16, 11, x, y + 5)
+				sspr(0, 53, 16, 11, x - 1, y + 5)
 			end),
 		small_doctor = adv_sprite(function(x, y)
-				sspr(22, 53, 15, 10, x - 6, y + 6)
+				sspr(22, 53, 15, 10, x - 7, y + 6)
 			end),
 		small_headless = adv_sprite(function(x, y)
 				-- rotate(38, 51, 2, x, y, 4, 13)
@@ -70,19 +70,19 @@ function init_sprites()
 				sspr(44, 49, 14, 15, x - 3, y + 2)
 			end),
 		small_cat = adv_sprite(function(x, y)
-				sspr(59, 50, 12, 14, x - 1, y + 2)
+				sspr(59, 50, 12, 14, x, y + 2)
 			end),
 		small_pig = adv_sprite(function(x, y)
-				sspr(71, 50, 14, 14, x - 3, y + 2)
+				sspr(71, 50, 14, 14, x - 1, y + 2)
 			end),
 		small_blackbeard = adv_sprite(function(x, y)
-				sspr(85, 48, 16, 16, x - 4, y + 2)
+				sspr(85, 48, 16, 16, x - 3, y + 2)
 			end),
 		small_police = adv_sprite(function(x, y)
-				sspr(101, 48, 14, 14, x - 2, y + 2)
+				sspr(101, 48, 14, 14, x - 3, y + 2)
 			end),
 		small_goblin = adv_sprite(function(x, y)
-				sspr(115, 48, 13, 12, x - 2, y + 4)
+				sspr(115, 48, 13, 12, x - 1, y + 4)
 			end),
 	}
 end
