@@ -38,6 +38,9 @@ function init_sprites()
 				sspr(44, 80, 13, 16, x, y)
 			end),
 
+		buffet = adv_sprite(function(x, y)
+				sspr(0, 96, 80, 17, x, y)
+			end),
 
 		small_ghost_neutral = adv_sprite(function(x, y)
 				sspr(42, 32, 12, 16, x, y)

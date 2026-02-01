@@ -122,6 +122,8 @@ function draw_bg()
 	-- floor
 	map(0, 0, 0, 0, 32, 32)
 
+	draw_sprite(sprites.buffet, room.w - 80, 0)
+
 	-- carpet
 	draw_sprite(sprites.carpet, room.w/2, room.h - 16, true)
 	draw_sprite(sprites.carpet, room.w/2 - 16, room.h - 16)
