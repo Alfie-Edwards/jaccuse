@@ -92,6 +92,7 @@ function _draw()
 
 	-- UI
 	camera(0, 0)
+	draw_hud()
 	draw_speech()
 	draw_clues()
 	draw_controls()
@@ -116,6 +117,12 @@ function draw_bg()
 	map(0, 0, 0, 0, 128, 128)
 end
 
+function draw_hud()
+	color(0)
+	print("? "..player.questions_remaining, 3, 117)
+	color(7)
+	print("? "..player.questions_remaining, 3, 118)
+end
 
 function strobe(period, offset)
 	return (t() - (offset or 0) + period) % (period * 2) < period
