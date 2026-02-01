@@ -120,7 +120,7 @@ function draw_bg()
 	end
 
 	-- floor
-	map(0, 0, 0, 0, 128, 128)
+	map(0, 0, 0, 0, 32, 32)
 
 	-- carpet
 	draw_sprite(sprites.carpet, room.w/2, room.h - 16)
