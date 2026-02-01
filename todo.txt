@@ -1,16 +1,17 @@
 PROGRAMMING
 
-[ ] Menu screen
-[ ] Intro scene?
-[ ] Accuse screen wrong guess (remove mask, human face underneath, closeup using big head sprites?)
+[x] Menu screen
+[x] Intro scene?
+[ ] Accuse screen wrong guess (remove mask, human face underneath, closeup using big head sprites?, "you lose!")
 [ ] Accuse screen correct guess (creature cries and goes home)
-[ ] Lose screen (you got kicked out)
+[ ] Lose screen (you took too long)
 [ ] Win screen (your post on your cryptid blog got 1000 views)
 [ ] Showing chat heads in dialogue
-[ ] Multiple questions (scroll with up/down?)
-[ ] Clues from some questions
+[x] Multiple questions (scroll with up/down?)
+[x] Clues from some questions
 [x] Turning character sprite
-[ ] Notebook
+[x] Notebook
+[x] Limited questions
 
 SCENARIO DESIGN
 
@@ -31,8 +32,8 @@ SOUNDS
 [x] Walking - 05
 [x] Epic BGM - music pattern 01
 [x] Dramatic accuse sound - music pattern 16
-[ ] Win music
-[ ] Lose music
+[x] Win music - music pattern 24
+[x] Lose music - music pattern 32
 [ ] Ambient sounds?
 [x] Found clue - 07
 [x] Open book - 12
@@ -42,5 +43,5 @@ POLISH
 [ ] Circular shadow under each character
 [ ] Guests bob up and down
 [ ] Something above character's head when interactable (maybe like a small greeting?)
-[ ] Draw player behind guests when y is lower
+[x] Draw player behind guests when y is lower
 [ ] Polaroids

@@ -7,6 +7,7 @@ Question = class({}, function(self, question, result, asked)  -- (str, Line|Ques
 	if asked == nil then asked = false end
 	self.question = question
 	self.result = result
+	-- TODO #cleanup
 	self.asked = asked
 end)
 
@@ -195,6 +196,8 @@ function see_clue(guest, maybe_clue)
 	if index_of(player.seen_clues[guest.name], maybe_clue) == nil then
 		add(player.seen_clues[guest.name], maybe_clue)
 		add_clue(guest, maybe_clue)
+		choose_question()
+		print_seen_clues()
 	end
 end
 
@@ -203,43 +206,47 @@ function start_talking_to(guest)
 	if guest == nil then guest = interaction end
 	assert(guest ~= nil)
 
-	player.talking_to = {guest=guest, idx=1}
-
-	say_line(player.talking_to.guest, player.talking_to.idx)
+	player.talking_to = {guest=guest, idx=0}  -- (idx will be inc'd to 1 on next player update)
 end
 
 -- get `Line` corresponding to given guest & dialogue index (or `nil` if idx too large)
-function get_line(guest, idx)
+function get_to_say(guest, idx)
 	if idx > #guest.dialogue then return nil end
 	local current_stage = guest.dialogue[idx]
 
-	local line_to_say = nil
+	-- TODO #cleanup
 	assert(current_stage.class ~= nil)
 	if current_stage.class == Line then
-		line_to_say = current_stage
+		return current_stage
 	elseif current_stage.class == Questions then
-		-- TODO #finish
-		line_to_say = current_stage.normal_questions[1].result
+		local opts = {}
+		for _,qn in ipairs(current_stage.normal_questions) do
+			add(opts, Option(qn.question, function()
+				see_clue(guest, qn.result.maybe_clue)
+				say(qn.result.text)
+			end))
+		end
+		return OptionList(opts)
 	else
 		assert(false == "unexpected class")
 	end
-	assert(line_to_say ~= nil)
-
-	return line_to_say
+	return nil
 end
 
 -- say a given line, or the line corresponding to the given index, from a `guest`.
 -- return `true` if there's a new line to say, or `false` if index too big (ie. end)
-function say_line(guest, line_or_idx)
-	local line = line_or_idx
-	if type(line) == "number" then
-		line = get_line(guest, line)
-		if line == nil then
-			return false
-		end
+function say_idx(guest, idx)
+	local to_say = get_to_say(guest, idx)
+	if to_say == nil then
+		return false
 	end
-	see_clue(guest, line.maybe_clue)
-	say(line.text)
+	-- TODO #cleanup
+	if to_say.class == Line then
+		see_clue(guest, to_say.maybe_clue)
+		say(to_say.text)
+	else
+		say(to_say)
+	end
 	return true
 end
 

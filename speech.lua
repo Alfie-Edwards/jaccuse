@@ -1,24 +1,50 @@
+Option = class({}, function(self, msg, callback)
+	self.msg = msg
+	self.callback = callback
+end)
+OptionList = class({}, function(self, opts)
+	self.opts = opts
+	self.selected_idx = 1
+end)
+
+
 function init_speech()
 	t_para_completed = nil
 	saying = nil
 end
 
 
+function advance()
+	saying.para += 1
+	saying.char = 1
+	if saying.para > #saying.paras then
+		saying = nil
+	end
+end
+
 function update_speech()
 	if saying then
-		prompt = "❎/🅾️ next"
-		if saying_para_done() then
-			if btnp(4) or btnp(5) or mouse.pressed then
-				saying.para += 1
-				saying.char = 1
-				if saying.para > #saying.paras then
-					saying = nil
-				end
+		if saying_options() then
+			local ol = saying.paras[saying.para]
+			prompt = { "⬆️/⬇️ choose", "❎ submit" }
+			if btnp(3) then
+				ol.selected_idx = min(ol.selected_idx + 1, #ol.opts)
+			elseif btnp(2) then
+				ol.selected_idx = max(ol.selected_idx - 1, 1)
+			elseif btnp(4) then
+				ol.opts[ol.selected_idx].callback()
 			end
 		else
-			saying.char = saying.char + 1
-			if saying.char == #saying.paras then
-				t_para_completed = t()
+			prompt = "❎/🅾️ next"
+			if saying_para_done() then
+				if btnp(4) or btnp(5) or mouse.pressed then
+					advance()
+				end
+			else
+				saying.char = saying.char + 1
+				if saying.char == #saying.paras then
+					t_para_completed = t()
+				end
 			end
 		end
 	end
@@ -37,22 +63,38 @@ function draw_speech()
 		circfill(120, 120, 3)
 		print("◆", 12, 90)
 
-		print(sub(saying.paras[saying.para], 1, saying.char), 8, 97, 2)
+		local para = saying.paras[saying.para]
+		if type(para) == "string" then
+			print(sub(para, 1, saying.char), 8, 97, 2)
 
-		if saying_para_done() and strobe(0.66, t_para_completed) then
-			print("♥", 109, 121, 9)
+			if saying_para_done() and strobe(0.66, t_para_completed) then
+				print("♥", 109, 121, 9)
+			end
+		elseif para.class == OptionList then
+			for i,o in ipairs(para.opts) do
+				local prefix = "  "
+				if i == para.selected_idx then
+					prefix = "▶ "
+				end
+				print(prefix..o.msg, 8, 97+(i-1)*8, 2)
+			end
 		end
 	end
 end
 
 
+-- paras: str | list[str | OptionList]
 function say(paras)
-	if type(paras) == "string" then
+	if type(paras) == "string" or paras.class == OptionList then
 		paras = {paras}
 	end
 
 	for i,v in ipairs(paras) do
-		paras[i] = wrap(v, 28, 4)
+		if type(v) == "string" then
+			paras[i] = wrap(v, 28, 4)
+		else
+			paras[i] = v
+		end
 	end
 
 	saying = {
@@ -63,7 +105,10 @@ function say(paras)
 	prompt = "❎/🅾️ next"
 end
 
+function saying_options()
+	return saying and type(saying.paras[saying.para]) == "table" and saying.paras[saying.para].class == OptionList
+end
 
 function saying_para_done()
-	return (not saying) or saying.char == #saying.paras[saying.para]
+	return (not saying) or saying_options() or saying.char == #saying.paras[saying.para]
 end
