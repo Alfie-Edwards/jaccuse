@@ -54,7 +54,7 @@ function init_sprites()
 			end),
 		small_headless = adv_sprite(function(x, y)
 				-- rotate(38, 51, 2, x, y, 4, 13)
-				sspr(48, 19, 13, 4, x, y)
+				sspr(48, 19, 13, 4, x - 2, y + 12)
 			end),
 		small_lion = adv_sprite(function(x, y)
 				sspr(44, 49, 14, 15, x - 2, y + 2)
