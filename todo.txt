@@ -32,7 +32,7 @@ SOUNDS
 [x] Walking - 05
 [x] Epic BGM - music pattern 01
 [x] Dramatic accuse sound - music pattern 16
-[ ] Win music
+[x] Win music - music pattern 24
 [ ] Lose music
 [ ] Ambient sounds?
 [x] Found clue - 07
