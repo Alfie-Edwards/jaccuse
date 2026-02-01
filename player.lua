@@ -106,17 +106,17 @@ function draw_player()
 	if player.dir == direction.up then
 		-- sprite = sprites.player_back
 		-- sprite = sprites.small_ghost_neutral
-		sprites.small_ghost_neutral.func(player.x, player.y)
+		sprites.small_ghost_neutral.func(player.x, player.y - 16)
 	elseif player.dir == direction.down then
 		-- sprite = sprites.player_front
 		-- sprite = sprites.small_ghost_neutral
-		sprites.small_ghost_neutral.func(player.x, player.y)
+		sprites.small_ghost_neutral.func(player.x, player.y - 16)
 	elseif player.dir == direction.left then
 		-- sprite = sprites.player_side
 		-- sprite = sprites.small_ghost_move
-		sprites.small_ghost_move.func(player.x, player.y)
+		sprites.small_ghost_move.func(player.x, player.y - 16)
 	elseif player.dir == direction.right then
-		sprites.small_ghost_move.func(player.x, player.y, true)
+		sprites.small_ghost_move.func(player.x, player.y - 16, true)
 		-- sprite = sprites.player_side
 		-- sprite = sprites.small_ghost_move
 		-- flip = true
