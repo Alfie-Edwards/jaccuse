@@ -206,9 +206,7 @@ function start_talking_to(guest)
 	if guest == nil then guest = interaction end
 	assert(guest ~= nil)
 
-	player.talking_to = {guest=guest, idx=1}
-
-	say_idx(player.talking_to.guest, player.talking_to.idx)
+	player.talking_to = {guest=guest, idx=0}  -- (idx will be inc'd to 1 on next player update)
 end
 
 -- get `Line` corresponding to given guest & dialogue index (or `nil` if idx too large)
@@ -221,12 +219,11 @@ function get_to_say(guest, idx)
 	if current_stage.class == Line then
 		return current_stage
 	elseif current_stage.class == Questions then
-		-- printh("creating options list")
-		-- TODO #finish
 		local opts = {}
 		for _,qn in ipairs(current_stage.normal_questions) do
 			add(opts, Option(qn.question, function()
-				printh("selected: "..qn.question)
+				see_clue(guest, qn.result.maybe_clue)
+				say(qn.result.text)
 			end))
 		end
 		return OptionList(opts)
@@ -248,8 +245,6 @@ function say_idx(guest, idx)
 		see_clue(guest, to_say.maybe_clue)
 		say(to_say.text)
 	else
-		-- printh(to_say)
-		-- printh(to_say.class == OptionList)
 		say(to_say)
 	end
 	return true

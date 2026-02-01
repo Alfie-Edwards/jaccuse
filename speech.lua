@@ -23,6 +23,7 @@ function advance()
 		saying = nil
 	end
 end
+
 function update_speech()
 	if saying then
 		if saying_options() then
@@ -32,9 +33,9 @@ function update_speech()
 				ol.selected_idx = min(ol.selected_idx + 1, #ol.opts)
 			elseif btnp(2) then
 				ol.selected_idx = max(ol.selected_idx - 1, 1)
-			elseif btnp(5) then
+			elseif btnp(4) then
 				ol.opts[ol.selected_idx].callback()
-				advance()
+				-- advance()  (callback is responsible for putting anything new up or advancing??)
 			end
 		else
 			xo_prompt = "next"
@@ -74,11 +75,11 @@ function draw_speech()
 			end
 		elseif para.class == OptionList then
 			for i,o in ipairs(para.opts) do
+				local prefix = "  "
 				if i == para.selected_idx then
-					print("♥ "..o.msg, 8, 97+(i-1)*8, 2)
-				else
-					print(o.msg, 8, 97+(i-1)*8, 2)
+					prefix = "▶ "
 				end
+				print(prefix..o.msg, 8, 97+(i-1)*8, 2)
 			end
 		end
 	end
@@ -92,7 +93,6 @@ function say(paras)
 	end
 
 	for i,v in ipairs(paras) do
-		-- printh("saying "..i.." is "..tostring(v))
 		if type(v) == "string" then
 			paras[i] = wrap(v)
 		else
@@ -109,23 +109,10 @@ function say(paras)
 end
 
 function saying_options()
-	-- printh("---")
-	-- printh(saying)
-	-- printh(type(saying.paras[saying.para]))
-	-- printh(saying.paras[saying.para].class == OptionList)
 	return saying and type(saying.paras[saying.para]) == "table" and saying.paras[saying.para].class == OptionList
 end
 
 function saying_para_done()
-	-- printh("---")
-	-- for k,v in pairs(saying) do
-	-- 	printh(k..": "..tostring(v))
-	-- end
-	-- for k,v in pairs(saying.paras) do
-	-- 	printh("    "..k..": "..tostring(v))
-	-- end
-	-- printh(saying.paras)
-	-- printh(saying_options())
 	return (not saying) or saying_options() or saying.char == #saying.paras[saying.para]
 end
 
