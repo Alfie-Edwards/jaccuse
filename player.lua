@@ -107,7 +107,9 @@ function draw_player()
 	if player.dir == direction.up then
 		-- sprite = sprites.player_back
 		-- sprite = sprites.small_ghost_neutral
+		pal(2, 7, 0)
 		sprites.small_ghost_neutral.func(player.x, player.y - 16)
+		pal(2, 2, 0)
 	elseif player.dir == direction.down then
 		-- sprite = sprites.player_front
 		-- sprite = sprites.small_ghost_neutral
