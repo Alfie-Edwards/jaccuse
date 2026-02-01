@@ -1,9 +1,10 @@
 function init_screens()
 	scene = "menu"
 	intro_strings = {
-		"the party's all in masks...",
-		"but one is a real monster!",
-		"find it before it eats everyone!",
+		"what's up spooktube!",
+		" i'm headed to the\ncryptid masquarade\n  at the hatchet",
+		"     rumor has it\nsome real life monsters\n    will be there!",
+		"good thing i'll be\n   on the scene\nto sniff them out!",
 	}
 
 	intro_string = nil
@@ -108,7 +109,9 @@ function draw_intro_screen()
 	cls(0)
 
 	color(12)
-	print_centered(intro_string, 60)
+	print_centered(intro_string, 51)
+	color(7)
+	print_centered(intro_string, 50)
 end
 
 function draw_win_screen()
