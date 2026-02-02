@@ -19,7 +19,7 @@ room = {
 	h = 256,
 }
 
-maximum_questions = 5
+maximum_questions = 15
 
 -- init ------------------------
 function _init()
